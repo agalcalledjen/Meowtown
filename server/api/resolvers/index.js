@@ -139,6 +139,7 @@ module.exports = app => {
 
         // console.log(items);
         // the console.log will appear in the terminal
+        // -------------------------
         // query {
         //   items{
         //     itemowner{
@@ -170,7 +171,9 @@ module.exports = app => {
         } catch (e) {
           throw new ApolloError(e);
         }
-        //
+        /* If there are no errors and a value is NULL and there are values in the db, double check the names of the columns. 
+        - If the names of the columns do not match, check the pg-resource and the queries. Will have to use AS to make it match. */
+
         // query {
         //   items {
         //     tags {
@@ -180,13 +183,26 @@ module.exports = app => {
         //   }
         // }
       },
-      async borrower() {
+      async borrower(item, args, { pgResource }) {
         //   /**
         //    * @TODO: Replace this mock return statement with the correct user from Postgres
         //    * or null in the case where the item has not been borrowed.
         //    */
-        return null;
-        //   // -------------------------------
+        try {
+          const itemBorrower = await pgResource.getUserById(item.borrowerid);
+          return itemBorrower;
+        } catch (e) {
+          throw new ApolloError(e);
+        }
+        // -------------------------------
+        // query {
+        //   items{
+        //     borrower{
+        //       fullname
+        //     }
+        //   }
+        // }
+        // ------ null is alright for the borrowerid since it is already in there
       },
       async imageurl({ imageurl, imageid, mimetype, data }) {
         if (imageurl) return imageurl;
