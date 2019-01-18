@@ -19,18 +19,18 @@ function tagsQueryString(tags, itemid, result) {
 
 module.exports = postgres => {
   return {
-    async createUser({ fullname, email, password }) {
+    async createUser({ name, email, password }) {
       const newUserInsert = {
         text:
-          'INSERT INTO users(fullname, email, password) VALUES($1, $2, $3) RETURNING *', // @TODO: Authentication - Server
-        values: [fullname, email, password]
+          'INSERT INTO users(name, email, password) VALUES($1, $2, $3) RETURNING *', // @TODO: Authentication - Server
+        values: [name, email, password]
       };
       try {
         const user = await postgres.query(newUserInsert);
         return user.rows[0];
       } catch (e) {
         switch (true) {
-          case /users_fullname_key/.test(e.message):
+          case /users_name_key/.test(e.message):
             throw 'An account with this username already exists.';
           case /users_email_key/.test(e.message):
             throw 'An account with this email already exists.';
@@ -111,7 +111,7 @@ module.exports = postgres => {
          *  to your query text using string interpolation
          */
 
-        text: `SELECT * FROM items ${idToOmit ? 'WHERE ownerif != $1' : ''}`,
+        text: `SELECT * FROM items ${idToOmit ? 'WHERE ownerid != $1' : ''}`,
         // <> is the same as !=
         // ${} - means we can use temparal literals, aka use js
         // if idToOmit exists, return string (WHERE ownerif != $1)
@@ -154,7 +154,7 @@ module.exports = postgres => {
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: `SELECT * FROM tags WHERE id IN (SELECT tagid FROM itemtags WHERE itemid = $1) `, // @TODO: Advanced queries
+        text: `SELECT id, name AS title FROM tags WHERE id IN (SELECT tagid FROM itemtags WHERE itemid = $1) `, // @TODO: Advanced queries
         values: [id]
       };
 
