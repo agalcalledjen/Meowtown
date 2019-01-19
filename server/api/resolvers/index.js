@@ -51,6 +51,13 @@ module.exports = app => {
         } catch (e) {
           throw new ApolloError(e);
         }
+        // query {
+        //   user (id: 1){
+        //     fullname
+        //     email
+        //     bio
+        //   }
+        // }
       },
       async items(parent, { filter }, { pgResource }, info) {
         // second parameter is id since we need it for the filter
@@ -218,7 +225,8 @@ module.exports = app => {
       // ...authMutations(app),
       // -------------------------------
 
-      async addItem(parent, args, context, info) {
+      async addItem(parent, { filter }, { pgResource }, info) {
+        // TODO: Why is it filter?
         /**
          *  @TODO: Destructuring
          *
@@ -233,10 +241,10 @@ module.exports = app => {
          */
 
         image = await image;
-        const user = await jwt.decode(context.token, app.get('JWT_SECRET'));
-        const newItem = await context.pgResource.saveNewItem({
-          item: args.item,
-          image: args.image,
+        const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
+        const newItem = await pgResource.saveNewItem({
+          item: filter.item,
+          image: filter.image,
           user
         });
         return newItem;

@@ -204,6 +204,11 @@ module.exports = postgres => {
 
                 // Generate new Item query
                 // @TODO
+                const newItemQuery = {
+                  text:
+                    'INSERT INTO items(title, description, tags) VALUES($1, $2, $3)',
+                  values: [title, description, tags]
+                };
                 // -------------------------------
 
                 // Insert new Item
