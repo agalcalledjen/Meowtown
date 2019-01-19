@@ -7,9 +7,13 @@ function tagsQueryString(tags, itemid, result) {
    * Can you refactor it to be simpler / more readable?
    */
   const length = tags.length;
+  // if there are no tags,
   return length === 0
-    ? `${result};`
-    : tags.shift() &&
+    ? // return the result
+      `${result};`
+    : // else
+      // remove the id and iterate thru the tags
+      tags.shift() &&
         tagsQueryString(
           tags,
           itemid,
@@ -206,13 +210,14 @@ module.exports = postgres => {
                 // @TODO
                 const newItemQuery = {
                   text:
-                    'INSERT INTO items(title, description, tags) VALUES($1, $2, $3)',
-                  values: [title, description, tags]
+                    'INSERT INTO items(title, description, ownerid) VALUES($1, $2, $3) RETURNING *',
+                  values: [title, description, user.id]
                 };
                 // -------------------------------
 
                 // Insert new Item
                 // @TODO
+                const insertNewItem = await postgres.query(newItemQuery);
                 // -------------------------------
 
                 const imageUploadQuery = {
@@ -233,6 +238,11 @@ module.exports = postgres => {
 
                 // Generate image relation query
                 // @TODO
+                /*  const imageRelationQuery = {
+                  text:
+                    'INSERT INTO items(title, description, tags) VALUES($1, $2, $3)',
+                  values: [title, description, tags]
+                }; */
                 // -------------------------------
 
                 // Insert image
@@ -241,10 +251,24 @@ module.exports = postgres => {
 
                 // Generate tag relationships query (use the'tagsQueryString' helper function provided)
                 // @TODO
+                const tagRelationshipsQuery = {
+                  text: `INSERT INTO itemtags(tagid, itemid) VALUES ${tagQueryString(
+                    // create a new array of tags after stripping away the tagid
+                    [...tags],
+                    itemid,
+                    ''
+                  )}`,
+                  // map() method will call a provided function on every element in the array.
+                  // map() utilizes return values and actually returns a new Array of the same size.
+                  // map() might be preferable when changing or altering data.
+                  // it faster and it returns a new Array (map() allocates memory and stores return values. ).
+                  value: tags.map(tag => tag.id)
+                };
                 // -------------------------------
 
                 // Insert tags
                 // @TODO
+                const insertTags = await postgres.query(tagRelationshipsQuery);
                 // -------------------------------
 
                 // Commit the entire transaction!
