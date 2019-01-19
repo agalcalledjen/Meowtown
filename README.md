@@ -1,5 +1,20 @@
 # Boomtown 🏙
 
+A back-end application that supports a local sharing economy using PostgreSQL, Node.js/Express, and GraphQL.
+
+---
+
+This is a project produced from the following lessons from Week 1 & 2:
+
+1. Intro to Databases with Postgres
+2. Asynchronous JavaScript
+3. Introducing Node
+4. Creating a Web Server with Express
+5. GraphQL APIs
+6. Functional Programming
+
+---
+
 ## Server
 
 Commands must be run from the `server` directory:
@@ -48,6 +63,8 @@ Run all tests:
 npm run test
 ```
 
+---
+
 ## Client
 
 Commands must be run from the `client` directory:
@@ -90,4 +107,20 @@ Run all tests:
 npm run test
 ```
 
+---
 
+## Technologies Used
+
+- JavaScript
+- Git
+- GitHub
+- Terminal
+  - Homebrew
+- Node.js
+  - npm
+
+---
+
+## Personal Learnings
+
+Below are the subsequent learning outcomes.
