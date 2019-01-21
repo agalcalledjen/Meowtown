@@ -118,6 +118,13 @@ npm run test
   - Homebrew
 - Node.js
   - npm
+- Postgres
+  - SQL
+- Express
+- GraphQL
+  - Schema Definition Language (SDL)
+- Apollo Server
+- Functional Programming
 
 ---
 
