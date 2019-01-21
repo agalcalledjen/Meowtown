@@ -12,7 +12,8 @@ function tagsQueryString(tags, itemid, result) {
     ? // return the result
       `${result};`
     : // else
-      // remove the id and iterate thru the tags
+      // The shift() method removes the first element from an array and returns that removed element. This method changes the length of the array.
+      // remove the first element of the array and iterate thru the tags again.
       tags.shift() &&
         tagsQueryString(
           tags,

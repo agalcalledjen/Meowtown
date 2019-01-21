@@ -118,7 +118,7 @@ npm run test
   - Homebrew
 - Node.js
   - npm
-- Postgres
+- PostgreSQL
   - SQL
 - Express
 - GraphQL
@@ -131,3 +131,5 @@ npm run test
 ## Personal Learnings
 
 Below are the subsequent learning outcomes.
+
+I will need to brush up on increasing my knowledge on JavaScript, especially with the involvement of functional programming.
