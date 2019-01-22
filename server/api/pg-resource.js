@@ -254,7 +254,7 @@ module.exports = postgres => {
                 // @TODO
                 const tagRelationshipsQuery = {
                   text: `INSERT INTO itemtags(tagid, itemid) VALUES ${tagQueryString(
-                    // create a new array of tags after stripping away the tagid
+                    // create a new array of tags
                     [...tags],
                     itemid,
                     ''
