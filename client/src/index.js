@@ -59,6 +59,7 @@ import client from './apollo';
 // @TODO: Remove this import once you have your router working below
 import Home from './pages/Home';
 // -------------------------------
+import Items from './pages/Items';
 
 import './index.css';
 
@@ -67,7 +68,9 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <ApolloProvider client={client}>
-        <Home />
+        {/* <Home /> */}
+        {/* to see our changes in items */}
+        <Items />
       </ApolloProvider>
     </MuiThemeProvider>
   );

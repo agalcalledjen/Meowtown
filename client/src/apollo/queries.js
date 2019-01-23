@@ -19,11 +19,36 @@ const ItemFields = gql`
     #
     # See the Apollo docs for instructions on how to use fragments:
     # https://www.apollographql.com/docs/angular/features/fragments.html
+    id
+    title
+    # imageurl
+    # description
+    # created
+    # tags {
+    #   id
+    #   title
+    # }
+    # itemowner {
+    #   id
+    #   fullname
+    #   email
+    #   bio
+    # }
+    # borrower {
+    #   id
+    #   fullname
+    #   email
+    #   bio
+    # }
   }
 `;
+
 export const ITEM_QUERY = gql`
   query item($id: ID!) {
     # @TODO: Query an item by its id and return the ItemFields fragment.
+    item(id: $id) {
+      ...ItemFields
+    }
   }
   ${ItemFields}
 `;
@@ -32,10 +57,13 @@ export const ALL_ITEMS_QUERY = gql`
   query items($filter: ID) {
     # @TODO: Query items (optionally by tag id) and return the ItemFields fragment.
     # @TODO - DO THIS FIRST!!!
+    items(filter: $filter) {
+      ...ItemFields
+    }
   }
   ${ItemFields}
 `;
-
+/* 
 export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
     # @TODO: Query the bio, email, fullname, items, and borrowed for the user by id
@@ -56,11 +84,11 @@ export const ADD_ITEM_MUTATION = gql`
     # and return the new item id when the mutation is complete.
   }
 `;
-
+ */
 /**
  * Auth-related queries and mutations.
  */
-
+/* 
 export const VIEWER_QUERY = gql`
   query {
     # @TODO: Query the id, email, fullname, and bio fields for the viewer.
@@ -85,3 +113,4 @@ export const LOGIN_MUTATION = gql`
     # and return the id of the new user when the mutation is complete.
   }
 `;
+ */
