@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Home from './Home';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+// import gql from 'graphql-tag';
+// import { Query } from 'react-apollo';
 
 /* // create query
 const GET_TAGS = gql`
