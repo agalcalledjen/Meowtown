@@ -4,10 +4,12 @@ import Home from '../pages/Home';
 import Items from '../pages/Items';
 import Profile from '../pages/Profile';
 import Share from '../pages/Share';
+import Menu from '../components/Menu/Menu';
 
 export default () => (
   <Fragment>
     {/* @TODO: Add your menu component here */}
+    <Menu />
     <Switch>
       {/**
        * @TODO: Define routes here for: /items, /profile, /profile/:userid, and /share
