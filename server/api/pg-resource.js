@@ -195,6 +195,7 @@ module.exports = postgres => {
         postgres.connect((err, client, done) => {
           try {
             // Begin postgres transaction
+            // ORIGINAL: client.query('BEGIN', err => {
             client.query('BEGIN', async err => {
               // Convert image (file stream) to Base64
               /* const imageStream = image.stream.pipe(strs('base64'));
@@ -259,7 +260,7 @@ module.exports = postgres => {
                 text: `INSERT INTO itemtags (tagid, itemid) VALUES ${tagsQueryString(
                   // create a new array of tags
                   [...tags],
-                  item.id,
+                  insertNewItem.rows[0].id,
                   ''
                 )}`,
                 // map() method will call a provided function on every element in the array.
@@ -283,7 +284,7 @@ module.exports = postgres => {
                 // release the client back to the pool
                 done();
                 // Uncomment this resolve statement when you're ready!
-                // resolve(newItem.rows[0])
+                resolve(insertNewItem.rows[0]);
                 // -------------------------------
               });
             });

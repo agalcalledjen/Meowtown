@@ -16,7 +16,7 @@
 const { ApolloError } = require('apollo-server-express');
 
 // @TODO: Uncomment these lines later when we add auth
-// const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken');
 // const authMutations = require("./auth")
 // -------------------------------
 const { UploadScalar, DateScalar } = require('../custom-types');
@@ -94,13 +94,6 @@ module.exports = app => {
        *
        */
       // @TODO: Uncomment these lines after you define the User type with these fields
-      /* stars(movie) {
-        return data.people.filter(person => (
-          person.filmography.find(credit => (
-            credit === movie.id && person.id !== movie.director
-          ))
-        ));
-      }, */
 
       // args can be replaced with _ (underscore)
       // user parameter is the same as parent, aka User: {},
@@ -160,13 +153,6 @@ module.exports = app => {
         } catch (e) {
           throw new ApolloError(e);
         }
-        // return {
-        //   id: 29,
-        //   fullname: "Mock user",
-        //   email: "mock@user.com",
-        //   bio: "Mock user. Remove me."
-        // }
-        //   // -------------------------------
       },
       async tags(item, args, { pgResource }) {
         // @TODO: Replace this mock return statement with the correct tags for the queried Item from Postgres
@@ -225,7 +211,7 @@ module.exports = app => {
       // ...authMutations(app),
       // -------------------------------
 
-      async addItem(parent, args, { token, pgResource }, info) {
+      async addItem(parent, args, { pgResource }, info) {
         // token is part of authentication
         /**
          *  @TODO: Destructuring
@@ -242,7 +228,8 @@ module.exports = app => {
 
         // const image = await image;
         // const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
-        const user = { id: '103' };
+
+        const user = { id: '205' };
         const newItem = await pgResource.saveNewItem({
           item: args.item,
           // image: args.image,
