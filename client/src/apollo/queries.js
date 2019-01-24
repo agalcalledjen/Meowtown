@@ -24,10 +24,10 @@ const ItemFields = gql`
     # imageurl
     # description
     # created
-    # tags {
-    #   id
-    #   title
-    # }
+    tags {
+      id
+      title
+    }
     # itemowner {
     #   id
     #   fullname
@@ -56,35 +56,38 @@ export const ITEM_QUERY = gql`
 export const ALL_ITEMS_QUERY = gql`
   query items($filter: ID) {
     # @TODO: Query items (optionally by tag id) and return the ItemFields fragment.
-    # @TODO - DO THIS FIRST!!!
     items(filter: $filter) {
       ...ItemFields
     }
   }
   ${ItemFields}
 `;
-/* 
-export const ALL_USER_ITEMS_QUERY = gql`
+
+/* export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
     # @TODO: Query the bio, email, fullname, items, and borrowed for the user by id
     # Use the ItemFields fragment for the items and borrowed fields.
   }
   ${ItemFields}
-`;
+`; */
 
 export const ALL_TAGS_QUERY = gql`
   query {
     # @TODO: Query the id and title fields for tags.
+    tags {
+      ...ItemFields
+    }
   }
+  ${ItemFields}
 `;
 
-export const ADD_ITEM_MUTATION = gql`
+/* export const ADD_ITEM_MUTATION = gql`
   mutation addItem($item: NewItemInput!, $image: Upload!) {
     # @TODO: Pass the item and image into the addItem mutation as arguments
     # and return the new item id when the mutation is complete.
   }
-`;
- */
+`; */
+
 /**
  * Auth-related queries and mutations.
  */

@@ -210,13 +210,13 @@ module.exports = app => {
         //   }
         // }
         // ------ null is alright for the borrowerid since it is already in there
-      },
-      async imageurl({ imageurl, imageid, mimetype, data }) {
+      }
+      /* async imageurl({ imageurl, imageid, mimetype, data }) {
         if (imageurl) return imageurl;
         if (imageid) {
           return `data:${mimetype};base64, ${data}`;
         }
-      }
+      } */
       // -------------------------------
     },
 
@@ -240,11 +240,12 @@ module.exports = app => {
          *  destructuring should look like.
          */
 
-        const image = await image;
-        const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
+        // const image = await image;
+        // const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
+        const user = { id: '103' };
         const newItem = await pgResource.saveNewItem({
           item: args.item,
-          image: args.image,
+          // image: args.image,
           user
         });
         return newItem;
