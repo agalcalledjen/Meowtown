@@ -229,7 +229,7 @@ module.exports = app => {
         // const image = await image;
         // const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
 
-        const user = { id: '205' };
+        const user = { id: 5 };
         const newItem = await pgResource.saveNewItem({
           item: args.item,
           // image: args.image,

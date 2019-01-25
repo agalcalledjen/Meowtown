@@ -213,7 +213,7 @@ module.exports = postgres => {
               // @TODO
               const newItemQuery = {
                 text:
-                  'INSERT INTO items(title, description, id) VALUES($1, $2, $3) RETURNING *',
+                  'INSERT INTO items(title, description, ownerid) VALUES($1, $2, $3) RETURNING *',
                 // 'INSERT INTO items(title, description) VALUES($1, $2) RETURNING *',
                 // values: [title, description]
                 values: [title, description, user.id]

@@ -22,18 +22,18 @@ const ItemFields = gql`
     id
     title
     # imageurl
-    # description
+    description
     # created
     tags {
       id
       title
     }
-    # itemowner {
-    #   id
-    #   fullname
-    #   email
-    #   bio
-    # }
+    itemowner {
+      id
+      fullname
+      email
+      bio
+    }
     # borrower {
     #   id
     #   fullname
@@ -63,13 +63,24 @@ export const ALL_ITEMS_QUERY = gql`
   ${ItemFields}
 `;
 
-/* export const ALL_USER_ITEMS_QUERY = gql`
+export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
     # @TODO: Query the bio, email, fullname, items, and borrowed for the user by id
     # Use the ItemFields fragment for the items and borrowed fields.
+    user(id: $id) {
+      fullname
+      email
+      bio
+      items {
+        ...ItemFields
+      }
+      # borrowed {
+      #   ...ItemFields
+      # }
+    }
   }
   ${ItemFields}
-`; */
+`;
 
 export const ALL_TAGS_QUERY = gql`
   query {

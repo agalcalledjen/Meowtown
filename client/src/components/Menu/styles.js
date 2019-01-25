@@ -21,9 +21,9 @@ const styles = theme => ({
     borderRadius: 50,
     boxShadow: 'none'
   }
-  /* icon: {
-    margin: theme.spacing.unit
-  } */
+  // icon: {
+  //   margin: theme.spacing.unit
+  // }
 });
 
 export default styles;

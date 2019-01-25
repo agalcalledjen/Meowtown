@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 // import ItemsGrid from './ItemsGrid';
 import ItemCard from '../../components/ItemCard';
+import ItemsGrid from '../../components/ItemsGrid';
 
-const Items = ({ items }) => {
+const Items = ({ classes, items }) => {
   // const { items } = data;
 
   return (
     <Fragment>
-      {/* {console.log({ items })} */}
-      {items.map(item => <p>{item.title}</p>)}
+      <ItemsGrid items={items} />
     </Fragment>
   );
 };

@@ -22,7 +22,7 @@ export default () => (
       <Route exact path="/welcome" component={Home} />
       <Route exact path="/items" component={Items} />
       <Route exact path="/profile" component={Profile} />
-      <Route exact path="/profile/:id" component={Profile} />
+      <Route exact path="/profile/:userid" component={Profile} />
       <Route exact path="/share" component={Share} />
       <Redirect to="/items" />
     </Switch>
