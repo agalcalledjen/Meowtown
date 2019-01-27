@@ -1,12 +1,10 @@
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: theme.spacing.unit * 12
   },
   paper: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
-    // padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 8
     // textAlign: 'center',
     // color: theme.palette.text.secondary
   }

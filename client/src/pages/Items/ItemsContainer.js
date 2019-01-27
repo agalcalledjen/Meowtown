@@ -10,12 +10,11 @@ class ItemsContainer extends Component {
   render() {
     return (
       <div>
-        {/* // <Items /> */}
         <Query query={ALL_ITEMS_QUERY}>
           {({ loading, error, data }) => {
             if (loading) return <FullScreenLoader inverted />;
             if (error) return <p>{`Error! ${error.message}`}</p>;
-            // console.log(data);
+            console.log(data);
             return <Items classes={this.props.classes} items={data.items} />;
           }}
         </Query>

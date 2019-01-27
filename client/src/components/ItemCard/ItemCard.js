@@ -29,7 +29,7 @@ const ItemCard = ({ classes, item }) => {
           </Typography>
           {item.tags.map(tag => (
             <Typography
-              // variant="subheading"
+              variant="body1"
               gutterBottom
               key={tag.id}
               className={classes.tags}

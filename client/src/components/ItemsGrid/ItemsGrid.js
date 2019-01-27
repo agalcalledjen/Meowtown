@@ -9,7 +9,7 @@ const ItemsGrid = ({ classes, items }) => {
   return (
     <Grid container className={classes.root} spacing={24}>
       {items.map(item => (
-        <Grid className={classes.control} item xs={4} key={item.id}>
+        <Grid item xs={4} className={classes.control} key={item.id}>
           <ItemCard item={item} />
         </Grid>
       ))}

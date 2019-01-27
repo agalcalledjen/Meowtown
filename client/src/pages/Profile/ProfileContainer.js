@@ -16,7 +16,7 @@ class ProfileContainer extends Component {
           if (loading) return <FullScreenLoader inverted />;
           if (error) return <p>{`Error! ${error.message}`}</p>;
           console.log(data);
-          return <Profile classes={this.props.classes} user={data.users} />;
+          return <Profile classes={this.props.classes} user={data.user} />;
         }}
       </Query>
     );
