@@ -1,7 +1,8 @@
 const styles = theme => ({
-  root: {
+  itemsRoot: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 12
+    padding: theme.spacing.unit * 12,
+    paddingTop: 0
   },
   // paper: {
   //   height: 140,
