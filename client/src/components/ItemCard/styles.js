@@ -1,12 +1,20 @@
 const styles = theme => ({
   card: {
-    // maxWidth: 345,
-    margin: theme.spacing.unit * 4
-    // padding: theme.spacing.unit * 2,
-    // color: theme.palette.text.secondary
+    // maxHeight: 800,
+    paddingBottom: theme.spacing.unit * 1.5
   },
   media: {
-    height: 240
+    height: 270
+  },
+  title: {
+    color: theme.palette.text.primary
+  },
+  tags: {
+    // color: 'rgba(0, 0, 0, 0.54)'
+    color: theme.palette.text.secondary
+  },
+  button: {
+    fontSize: 16
   }
 });
 

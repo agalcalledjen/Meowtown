@@ -1,11 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
 import UserAcct from '@material-ui/icons/MoreVert';
 // import Switch from '@material-ui/core/Switch';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -21,6 +19,7 @@ import SignoutIcon from '@material-ui/icons/PowerSettingsNew';
 
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
+import { Link } from 'react-router-dom';
 
 import styles from './styles';
 
@@ -67,20 +66,19 @@ class MenuAppBar extends React.Component {
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
+              href="/welcome"
             >
               {/* <MenuIcon /> */}
               <img src={logo} className="App-logo" alt="logo" width="40" />
             </IconButton>
-            {/*  <Typography variant="h6" color="inherit" className={classes.grow}>
-              Photos
-            </Typography> */}
+            <div className={classes.grow} />
             <Button
-              href="#text-buttons"
+              href="/share"
               // className={(classes.margin, classes.shareButton)}
               className={classes.shareButton}
             >
               <AddIcon className={classes.margin} />
-              Share Something
+              SHARE SOMETHING
             </Button>
             {auth && (
               <div>
@@ -110,6 +108,8 @@ class MenuAppBar extends React.Component {
                   <MenuItem
                     className={classes.menuItem}
                     onClick={this.handleClose}
+                    component={Link}
+                    to="/profile"
                   >
                     <ListItemIcon className={classes.icon}>
                       <FingerprintIcon />
@@ -148,15 +148,3 @@ MenuAppBar.propTypes = {
 };
 
 export default withStyles(styles)(MenuAppBar);
-
-/* const MenuAppBar = ({ classes }) => {
-  return (
-    <div>
-      <p>
-        This is the share page located at <code> /share</code> .{' '}
-      </p>
-    </div>
-  );
-};
-
-export default MenuAppBar; */

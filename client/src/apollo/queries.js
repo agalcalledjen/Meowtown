@@ -21,7 +21,7 @@ const ItemFields = gql`
     # https://www.apollographql.com/docs/angular/features/fragments.html
     id
     title
-    # imageurl
+    imageurl
     description
     # created
     tags {

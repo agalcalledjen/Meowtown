@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
-// import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -13,22 +12,36 @@ import { withStyles } from '@material-ui/core';
 const ItemCard = ({ classes, item }) => {
   return (
     <Card className={classes.card}>
-      {/* <CardActionArea> */}
-      <CardMedia
-        className={classes.media}
-        image="https://r.hswstatic.com/w_907/gif/tesla-cat.jpg"
-        title="Contemplative Reptile"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {item.title}
-        </Typography>
-        {item.tags.map(tag => (
-          <Typography component="p">{tag.title}</Typography>
-        ))}
-        <Typography component="p">{item.description}</Typography>
-      </CardContent>
-      {/* </CardActionArea> */}
+      <Fragment>
+        <CardMedia
+          className={classes.media}
+          image={item.imageurl}
+          title={item.title}
+        />
+        <CardContent>
+          <Typography
+            component="h2"
+            variant="display1"
+            gutterBottom
+            className={classes.title}
+          >
+            {item.title}
+          </Typography>
+          {item.tags.map(tag => (
+            <Typography
+              // variant="subheading"
+              gutterBottom
+              key={tag.id}
+              className={classes.tags}
+            >
+              <span>{tag.title}</span>
+            </Typography>
+          ))}
+          <Typography variant="body1" gutterBottom>
+            {item.description}
+          </Typography>
+        </CardContent>
+      </Fragment>
       <CardActions>
         <Button variant="outlined" className={classes.button}>
           Borrow

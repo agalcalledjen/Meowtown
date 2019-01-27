@@ -14,7 +14,7 @@ const styles = theme => ({
   },
   userButton: {
     // marginLeft: 20,
-    marginRight: 12
+    // marginRight: 12
   },
   shareButton: {
     margin: theme.spacing.unit,
