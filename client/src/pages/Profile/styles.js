@@ -23,6 +23,9 @@ const styles = theme => ({
     borderRadius: 50,
     width: 80,
     height: 80
+  },
+  share: {
+    marginLeft: theme.spacing.unit * 12
   }
 });
 
