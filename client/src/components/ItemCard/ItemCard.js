@@ -8,6 +8,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import styles from './styles';
 import { withStyles } from '@material-ui/core';
+import Gravatar from 'react-gravatar';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
 
 const ItemCard = ({ classes, item }) => {
   return (
@@ -19,6 +22,31 @@ const ItemCard = ({ classes, item }) => {
           title={item.title}
         />
         <CardContent>
+          <Grid container className={classes.owner} alignItems="center">
+            <Avatar className={classes.avatar}>
+              <Gravatar
+                email={item.itemowner.email}
+                default="retro"
+                className={classes.gravatar}
+              />
+            </Avatar>
+            <Grid item>
+              <Typography
+                variant="body2"
+                gutterBottom
+                className={classes.ownerName}
+              >
+                {item.itemowner.fullname}
+              </Typography>
+              <Typography
+                variant="body1"
+                gutterBottom
+                className={classes.ownerName}
+              >
+                {item.itemowner.fullname}
+              </Typography>
+            </Grid>
+          </Grid>
           <Typography
             component="h2"
             variant="display1"

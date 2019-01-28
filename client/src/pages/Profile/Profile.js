@@ -59,7 +59,7 @@ const Profile = ({ classes, user }) => {
             <Typography component="h2" variant="headline" gutterBottom>
               {/* <Typography variant="title" gutterBottom> */}
               <span>
-                {sharedItems > 1 || sharedItems == 0
+                {sharedItems > 1 || sharedItems === 0
                   ? sharedItems + ' Items'
                   : sharedItems + ' Item'}
               </span>{' '}

@@ -15,6 +15,23 @@ const styles = theme => ({
   },
   button: {
     fontSize: 16
+  },
+  avatar: {
+    marginRight: theme.spacing.unit * 2,
+    width: 60,
+    height: 60
+    // borderRadius: 50
+  },
+  gravatar: {
+    borderRadius: 50,
+    width: 80,
+    height: 80
+  },
+  owner: {
+    marginBottom: theme.spacing.unit * 6
+  },
+  ownerName: {
+    width: '100%'
   }
 });
 

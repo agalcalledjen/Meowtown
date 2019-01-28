@@ -9,4 +9,7 @@ export default createMuiTheme({
       main: '#212121'
     }
   }
+  // button: {
+  //   textTransform: 'uppercase'
+  // }
 });

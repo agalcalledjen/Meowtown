@@ -34,12 +34,12 @@ const ItemFields = gql`
       email
       bio
     }
-    # borrower {
-    #   id
-    #   fullname
-    #   email
-    #   bio
-    # }
+    borrower {
+      id
+      fullname
+      email
+      bio
+    }
   }
 `;
 
@@ -74,9 +74,9 @@ export const ALL_USER_ITEMS_QUERY = gql`
       items {
         ...ItemFields
       }
-      # borrowed {
-      #   ...ItemFields
-      # }
+      borrowed {
+        ...ItemFields
+      }
     }
   }
   ${ItemFields}
@@ -86,16 +86,20 @@ export const ALL_TAGS_QUERY = gql`
   query {
     # @TODO: Query the id and title fields for tags.
     tags {
-      ...ItemFields
+      id
+      title
     }
   }
-  ${ItemFields}
 `;
 
 /* export const ADD_ITEM_MUTATION = gql`
-  mutation addItem($item: NewItemInput!, $image: Upload!) {
+  mutation addItem($item: NewItemInput!) # , $image: Upload!
+  {
     # @TODO: Pass the item and image into the addItem mutation as arguments
     # and return the new item id when the mutation is complete.
+    addItem(item: $item) {
+      id
+    }
   }
 `; */
 
