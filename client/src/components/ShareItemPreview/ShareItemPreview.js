@@ -1,19 +1,22 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import ItemCard from './../ItemCard/ItemCard';
+import { connect } from 'react-redux';
 
-class ShareForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const ShareItemPreview = ({ shareItemPreview }) => {
+  return (
+    // <Fragment>
+    <ItemCard item={shareItemPreview} />
+    // </Fragment>
+  );
+};
 
-  render() {
-    return (
-      <Fragment>
-        <ItemCard />
-      </Fragment>
-    );
-  }
-}
+// export default ShareItemPreview;
 
-export default ShareForm;
+const mapStateToProps = state => ({
+  // This is the reducer we set up in Exercise 3
+  // implicit return
+  shareItemPreview: state.shareItemPreview
+});
+
+// connect is a fx that takes in two arguments, mapStateToProps and ShareItemPreview
+export default connect(mapStateToProps)(ShareItemPreview);

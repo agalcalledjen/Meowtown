@@ -12,6 +12,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Form, Field } from 'react-final-form';
+import {
+  updateItem,
+  resetItem,
+  resetItemImg
+} from '../../redux/modules/ShareItem';
+import { connect } from 'react-redux';
 
 // import { validate } from './helpers/validation';
 
@@ -197,4 +203,30 @@ ShareItemForm.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ShareItemForm);
+const mapDispatchToProps = dispatch => ({
+  /*  This function will provide a prop called 
+    'updateNewItem' to our component. */
+  // we're creating a key called updateItem and the value is itself
+  // then we will use this prop
+  // this fx will be invoked when we start typing aka being dispatched
+  updateItem(item) {
+    // Inside this function we can dispatch data to our reducer.
+    dispatch(updateItem(item));
+  },
+  // ... other methods
+  resetItem() {
+    dispatch(resetItem());
+  },
+  resetItemImg() {
+    dispatch(resetItemImg());
+  }
+});
+
+// export default withStyles(styles)(ShareItemForm);
+// since we don't have mapStateToProps, it will be null
+// it is part of the first argument
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withStyles(ShareItemForm));
