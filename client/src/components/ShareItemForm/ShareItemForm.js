@@ -100,7 +100,7 @@ class ShareForm extends Component {
         <Form
           onSubmit={this.onSubmit}
           validate={this.validate}
-          render={({ handleSubmit }) => (
+          render={({ handleSubmit, submitting, pristine }) => (
             <form
               className={classes.container}
               // noValidate autoComplete="off"
@@ -127,8 +127,8 @@ class ShareForm extends Component {
                     <InputLabel
                       // htmlFor="custom-css-standard-input"
                       classes={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
+                        root: classes.cssLabel
+                        // focused: classes.cssFocused
                       }}
                     >
                       Name your item
@@ -187,30 +187,28 @@ class ShareForm extends Component {
               {/* <Field
                 name="tags"
                 render={({ tags, input, meta }) => (
-                  <div className="field">
-                    <FormControl className={classes.formControl}>
-                      <InputLabel htmlFor="select-multiple-checkbox">
-                        Add some tags
-                      </InputLabel>
-                      <Select
-                        multiple
-                        value={tags}
-                        onChange={this.handleChange}
-                        input={<Input id="select-multiple-checkbox" />}
-                        renderValue={selected => selected.join(', ')}
-                        // MenuProps={MenuProps}
-                        // onChange={this.handleChange}
-                        inputProps={{ name: 'Item tag' }}
-                      >
-                        {tags.map(tag => (
-                          <MenuItem key={tag.id} value={tag.title}>
-                            <Checkbox checked={tag.indexOf(tag) > -1} />
-                            <ListItemText primary={tag.title} />
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </div>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="select-multiple-checkbox">
+                      Add some tags
+                    </InputLabel>
+                    <Select
+                      multiple
+                      value={tags}
+                      onChange={this.handleChange}
+                      input={<Input id="select-multiple-checkbox" {...tags} />}
+                      renderValue={selected => selected.join(', ')}
+                      // MenuProps={MenuProps}
+                      onChange={this.handleChange}
+                      inputProps={{ name: 'Item tag' }}
+                    >
+                      {tags.map(tag => (
+                        <MenuItem key={tag.id} value={tag.title}>
+                          <Checkbox checked={tag.indexOf(tag) > -1} />
+                          <ListItemText primary={tag.title} />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                 )}
               /> */}
 
@@ -219,6 +217,7 @@ class ShareForm extends Component {
                 // color="primary"
                 // disabled
                 className={classes.shareButton}
+                disabled={submitting || pristine}
               >
                 Share
               </Button>

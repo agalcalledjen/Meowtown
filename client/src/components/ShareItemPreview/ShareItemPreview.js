@@ -8,28 +8,9 @@ class ShareForm extends Component {
   }
 
   render() {
-    const blankItem = {
-      borrower: 'null',
-      description: '',
-      id: 'X',
-      imageurl: '',
-      itemowner: {
-        bio: '',
-        email: '',
-        fullname: '',
-        id: ''
-      },
-      tags: [
-        {
-          id: '',
-          title: ''
-        }
-      ],
-      title: ''
-    };
     return (
       <Fragment>
-        <ItemCard item={blankItem} />
+        <ItemCard />
       </Fragment>
     );
   }

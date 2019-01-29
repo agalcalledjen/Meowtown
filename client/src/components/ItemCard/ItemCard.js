@@ -83,6 +83,29 @@ ItemCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
+ItemCard.defaultProps = {
+  item: {
+    borrower: 'null',
+    description: 'With tangerine trees and marmalade skies',
+    id: 'X',
+    imageurl:
+      'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-sgt-pepper-3-75354b0a-c2dd-4c8c-a5a1-3e01f7316e63.jpg',
+    itemowner: {
+      bio: 'In the sky with diamonds.',
+      email: 'lucy@beatles.com',
+      fullname: 'Lucy',
+      id: 'X'
+    },
+    tags: [
+      {
+        id: 'X',
+        title: 'Yourself in a boat on a river'
+      }
+    ],
+    title: 'Picture'
+  }
+};
+
 export default withStyles(styles)(ItemCard);
 
 // put the mapping over here and grab the itemcard from components
