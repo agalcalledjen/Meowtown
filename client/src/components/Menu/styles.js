@@ -3,8 +3,9 @@ const styles = theme => ({
     margin: theme.spacing.unit
   },
   root: {
-    flexGrow: 1,
-    marginBottom: theme.spacing.unit * 12
+    flexGrow: 1
+    // marginBottom: theme.spacing.unit * 12
+    // marginBottom: theme.spacing.unit * 2
   },
   grow: {
     flexGrow: 1

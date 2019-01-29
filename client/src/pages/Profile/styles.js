@@ -1,4 +1,7 @@
 const styles = theme => ({
+  container: {
+    marginTop: theme.spacing.unit * 12
+  },
   root: {
     flexGrow: 1,
     padding: theme.spacing.unit * 12,

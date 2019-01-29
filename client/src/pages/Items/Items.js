@@ -1,14 +1,16 @@
 import React, { Fragment } from 'react';
 import ItemsGrid from '../../components/ItemsGrid';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 
 const Items = ({ classes, items }) => {
   // const { items } = data;
-
   return (
-    <Fragment>
+    <div className={classes.container}>
       <ItemsGrid items={items} />
-    </Fragment>
+    </div>
   );
 };
 
-export default Items;
+export default withStyles(styles)(Items);

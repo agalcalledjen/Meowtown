@@ -11,22 +11,9 @@ import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-
-import ReactDOM from 'react-dom';
 import { Form, Field } from 'react-final-form';
 
-import { validate } from './helpers/validation';
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
-  }
-};
+// import { validate } from './helpers/validation';
 
 class ShareItemForm extends Component {
   constructor(props) {
@@ -35,12 +22,6 @@ class ShareItemForm extends Component {
       checked: []
     };
   }
-
-  /*  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
-  }; */
 
   handleToggle = value => () => {
     const { checked } = this.state;
@@ -62,8 +43,8 @@ class ShareItemForm extends Component {
     this.setState({ checked: event.target.value });
   };
 
-  onSubmit(o) {
-    console.log('Submitting:', o);
+  onSubmit(input) {
+    console.log('Submitting:', input);
   }
 
   validate(o) {
@@ -85,26 +66,20 @@ class ShareItemForm extends Component {
     const { classes, tags } = this.props;
     return (
       <Fragment>
-        <Typography
-          variant="display3"
-          // className={classes.headline}
-        >
+        <Typography variant="display1" className={classes.headline}>
           Share. Borrow.
         </Typography>
-        <Typography
-          variant="display3"
-          // className={classes.headline}
-        >
+        <Typography variant="display1" className={classes.headline}>
           Prosper.
         </Typography>
         <Form
           onSubmit={this.onSubmit}
           validate={this.validate}
-          render={({ handleSubmit, submitting, pristine }) => (
-            <form
-              className={classes.container}
-              // noValidate autoComplete="off"
-            >
+          render={({
+            handleSubmit
+            // , submitting, pristine
+          }) => (
+            <form className={classes.container} onSubmit={handleSubmit}>
               <Button
                 variant="contained"
                 color="primary"
@@ -205,7 +180,8 @@ class ShareItemForm extends Component {
                 // color="primary"
                 // disabled
                 className={classes.shareButton}
-                disabled={submitting || pristine}
+                // disabled={submitting || pristine}
+                type="submit"
               >
                 Share
               </Button>

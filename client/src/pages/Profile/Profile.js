@@ -32,7 +32,7 @@ const Profile = ({ classes, user }) => {
   const sharedItems = user.items.length;
 
   return (
-    <Fragment>
+    <div className={classes.container}>
       <Grid container spacing={24} className={classes.root}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
@@ -87,7 +87,7 @@ const Profile = ({ classes, user }) => {
       ) : (
         ''
       )}
-    </Fragment>
+    </div>
   );
 };
 
