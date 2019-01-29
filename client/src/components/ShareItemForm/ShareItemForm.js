@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import styles from './styles';
-import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -29,11 +28,11 @@ const MenuProps = {
   }
 };
 
-class ShareForm extends Component {
+class ShareItemForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: [0]
+      checked: []
     };
   }
 
@@ -60,12 +59,13 @@ class ShareForm extends Component {
   };
 
   handleChange = event => {
-    this.setState({ name: event.target.value });
+    this.setState({ checked: event.target.value });
   };
 
   onSubmit(o) {
     console.log('Submitting:', o);
   }
+
   validate(o) {
     console.log('Validating:', o);
     const error = {};
@@ -82,7 +82,7 @@ class ShareForm extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, tags } = this.props;
     return (
       <Fragment>
         <Typography
@@ -116,14 +116,6 @@ class ShareForm extends Component {
                 name="name"
                 render={({ input, meta }) => (
                   <FormControl className={classes.field}>
-                    {/* // <div className="field"> */}
-                    {/* <TextField
-                      id="standard-with-placeholder"
-                      label="Name your item"
-                      className={classes.textField}
-                      margin="normal"
-                      inputProps={input}
-                    /> */}
                     <InputLabel
                       // htmlFor="custom-css-standard-input"
                       classes={{
@@ -143,12 +135,12 @@ class ShareForm extends Component {
                     {meta.touched &&
                       meta.invalid && (
                         <div
-                          className="error"
-                          style={{
-                            color: 'red',
-                            fontSize: '0.8rem',
-                            margin: '1rem'
-                          }}
+                          className={classes.error}
+                          // style={{
+                          //   color: 'red',
+                          //   fontSize: '0.8rem',
+                          //   margin: '1rem'
+                          // }}
                         >
                           {meta.error}
                         </div>
@@ -161,7 +153,7 @@ class ShareForm extends Component {
                 render={({ input, meta }) => (
                   <FormControl className={classes.field}>
                     <Input
-                      id="standard-bare"
+                      id="item-description-input"
                       className={classes.input}
                       multiline
                       rows="4"
@@ -171,12 +163,12 @@ class ShareForm extends Component {
                     {meta.touched &&
                       meta.invalid && (
                         <div
-                          className="error"
-                          style={{
-                            color: 'red',
-                            fontSize: '0.8rem',
-                            margin: '1rem'
-                          }}
+                          className={classes.error}
+                          // style={{
+                          //   color: 'red',
+                          //   fontSize: '0.8rem',
+                          //   margin: '1rem'
+                          // }}
                         >
                           {meta.error}
                         </div>
@@ -184,33 +176,29 @@ class ShareForm extends Component {
                   </FormControl>
                 )}
               />
-              {/* <Field
-                name="tags"
-                render={({ tags, input, meta }) => (
-                  <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="select-multiple-checkbox">
-                      Add some tags
-                    </InputLabel>
-                    <Select
-                      multiple
-                      value={tags}
-                      onChange={this.handleChange}
-                      input={<Input id="select-multiple-checkbox" {...tags} />}
-                      renderValue={selected => selected.join(', ')}
-                      // MenuProps={MenuProps}
-                      onChange={this.handleChange}
-                      inputProps={{ name: 'Item tag' }}
-                    >
-                      {tags.map(tag => (
-                        <MenuItem key={tag.id} value={tag.title}>
-                          <Checkbox checked={tag.indexOf(tag) > -1} />
-                          <ListItemText primary={tag.title} />
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                )}
-              /> */}
+
+              <FormControl className={classes.field}>
+                <InputLabel htmlFor="select-multiple-checkbox">
+                  Add some tags
+                </InputLabel>
+                <Select
+                  multiple
+                  value={this.state.checked}
+                  onChange={this.handleChange}
+                  input={<Input id="select-multiple-checkbox" />}
+                  renderValue={selected => selected.join(', ')}
+                  className={classes.tags}
+                >
+                  {tags.map(tag => (
+                    <MenuItem key={tag.id} value={tag.title}>
+                      <Checkbox
+                        checked={this.state.checked.indexOf(tag.title) > -1}
+                      />
+                      <ListItemText primary={tag.title} />
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
               <Button
                 variant="contained"
@@ -229,8 +217,8 @@ class ShareForm extends Component {
   }
 }
 
-// ShareForm.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
+ShareItemForm.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-export default withStyles(styles)(ShareForm);
+export default withStyles(styles)(ShareItemForm);

@@ -15,7 +15,7 @@ class ShareContainer extends Component {
           if (loading) return <FullScreenLoader inverted />;
           if (error) return <p>{`Error! ${error.message}`}</p>;
           // console.log(data);
-          return <Share classes={this.props.classes} tags={data.tag} />;
+          return <Share classes={this.props.classes} tags={data.tags} />;
         }}
       </Query>
     );

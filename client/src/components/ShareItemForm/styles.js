@@ -1,4 +1,9 @@
 const styles = theme => ({
+  error: {
+    color: 'red',
+    fontSize: '1rem',
+    margin: '1rem'
+  },
   headline: {
     fontWeight: 700,
     color: theme.palette.text.primary,
@@ -32,6 +37,9 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120,
     maxWidth: 300
+  },
+  tags: {
+    textTransform: 'capitalize'
   },
   shareButton: {
     margin: theme.spacing.unit
