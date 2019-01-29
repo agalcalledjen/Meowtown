@@ -19,7 +19,7 @@ import ShareItemPreview from '../../components/ShareItemPreview';
 
 const Share = ({ classes, tags }) => {
   return (
-    <Grid container className={classes.container} spacing={24} justify="center">
+    <Grid container className={classes.container} spacing={40} justify="center">
       <Grid item xs={4} className={classes.control}>
         {/* this not appear in mobile view */}
         <ShareItemPreview />

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -79,6 +79,17 @@ class ShareItemForm extends Component {
     this.setState({ selectedTags: event.target.value });
   };
 
+  generateTagsText(tags, selected) {
+    return tags
+      .map(t => (selected.indexOf(t.id) > -1 ? t.title : false))
+      .filter(e => e)
+      .join(', ');
+  }
+
+  handleSelectFile = () => {
+    this.setState({ fileSelected: this.fileInput.current.files[0] });
+  };
+
   handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
@@ -139,6 +150,7 @@ class ShareItemForm extends Component {
                 subscription={{ values: true }}
                 component={({ values }) => {
                   if (values) {
+                    console.log('VALUES', values);
                     this.dispatchUpdate(values, tags, updateItem);
                   }
                   return '';
@@ -148,11 +160,24 @@ class ShareItemForm extends Component {
                 variant="contained"
                 color="primary"
                 className={classes.button}
+                onClick={() => {
+                  this.fileInput.current.click();
+                }}
               >
                 Select An Image
               </Button>
+              <input
+                type="file"
+                id="fileInput"
+                ref={this.fileInput}
+                accept="image/*"
+                onChange={() => {
+                  this.handleSelectFile();
+                }}
+                hidden
+              />
               <Field
-                name="name"
+                name="title"
                 render={({ input, meta }) => (
                   <FormControl className={classes.field}>
                     <InputLabel
@@ -161,28 +186,21 @@ class ShareItemForm extends Component {
                         root: classes.cssLabel
                         // focused: classes.cssFocused
                       }}
-                    >
-                      Name your item
-                    </InputLabel>
-                    <Input
-                      id="item-name-input"
+                    />
+                    <TextField
+                      id="itemNameInput"
                       className={classes.input}
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
+                      // classes={{
+                      //   underline: classes.cssUnderline
+                      // }}
+                      // inputProps={input}
+                      label="Name your item"
+                      type="text"
+                      {...input}
                     />
                     {meta.touched &&
                       meta.invalid && (
-                        <div
-                          className={classes.error}
-                          // style={{
-                          //   color: 'red',
-                          //   fontSize: '0.8rem',
-                          //   margin: '1rem'
-                          // }}
-                        >
-                          {meta.error}
-                        </div>
+                        <div className={classes.error}>{meta.error}</div>
                       )}
                   </FormControl>
                 )}
@@ -191,53 +209,59 @@ class ShareItemForm extends Component {
                 name="description"
                 render={({ input, meta }) => (
                   <FormControl className={classes.field}>
-                    <Input
+                    <TextField
                       id="item-description-input"
                       className={classes.input}
                       multiline
                       rows="4"
-                      defaultValue="Description"
+                      // defaultValue="Description"
+                      placeholder="Description"
                       // margin="normal"
+                      inputProps={input}
                     />
                     {meta.touched &&
                       meta.invalid && (
-                        <div
-                          className={classes.error}
-                          // style={{
-                          //   color: 'red',
-                          //   fontSize: '0.8rem',
-                          //   margin: '1rem'
-                          // }}
-                        >
-                          {meta.error}
-                        </div>
+                        <div className={classes.error}>{meta.error}</div>
                       )}
                   </FormControl>
                 )}
               />
 
-              <FormControl className={classes.field}>
-                <InputLabel htmlFor="select-multiple-checkbox">
-                  Add some tags
-                </InputLabel>
-                <Select
-                  multiple
-                  value={this.state.selectedTags}
-                  onChange={this.handleSelectTags}
-                  input={<Input id="select-multiple-checkbox" />}
-                  renderValue={selected => selected.join(', ')}
-                  className={classes.tags}
-                >
-                  {tags.map(tag => (
-                    <MenuItem key={tag.id} value={tag.title}>
-                      <Checkbox
-                        checked={this.state.selectedTags.indexOf(tag.id) > -1}
-                      />
-                      <ListItemText primary={tag.title} />
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <Field
+                name="tags"
+                render={({ input, meta }) => (
+                  <FormControl className={classes.field}>
+                    <InputLabel htmlFor="select-multiple-checkbox">
+                      Add some tags
+                    </InputLabel>
+                    <Select
+                      multiple
+                      value={this.state.selectedTags}
+                      onChange={this.handleSelectTags}
+                      input={<Input id="select-multiple-checkbox" />}
+                      renderValue={selected =>
+                        this.generateTagsText(tags, selected)
+                      }
+                      className={classes.tags}
+                    >
+                      {tags.map(tag => (
+                        <MenuItem key={tag.id} value={tag.id}>
+                          <Checkbox
+                            checked={
+                              this.state.selectedTags.indexOf(tag.id) > -1
+                            }
+                          />
+                          <ListItemText primary={tag.title} />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    {meta.touched &&
+                      meta.invalid && (
+                        <div className={classes.error}>{meta.error}</div>
+                      )}
+                  </FormControl>
+                )}
+              />
 
               <Button
                 variant="contained"

@@ -1,8 +1,8 @@
 const styles = theme => ({
   error: {
     color: 'red',
-    fontSize: '1rem',
-    margin: '1rem'
+    fontSize: '1rem'
+    // margin: '1rem'
   },
   headline: {
     fontWeight: 700,
@@ -34,7 +34,9 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     fontSize: '1.25rem',
     textTransform: 'uppercase',
-    fontWeight: 400
+    fontWeight: 400,
+    paddingRight: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing.unit * 4
   },
   field: {
     width: '100%',
