@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Form, Field } from 'react-final-form';
+import { Form, Field, FormSpy } from 'react-final-form';
 import {
   updateItem,
   resetItem,
@@ -24,10 +24,60 @@ import { connect } from 'react-redux';
 class ShareItemForm extends Component {
   constructor(props) {
     super(props);
+    this.fileInput = React.createRef();
+
     this.state = {
-      checked: []
+      // checked: [],
+      fileSelected: false,
+      done: false,
+      selectedTags: []
     };
   }
+
+  dispatchUpdate(values, tags, updateItem) {
+    if (!values.imageurl && this.state.fileSelected) {
+      this.getBase64Url().then(imageurl => {
+        updateItem({
+          imageurl
+        });
+      });
+    }
+    updateItem({
+      ...values,
+      tags: this.applyTags(tags)
+    });
+  }
+
+  // looking at all the tags and filtering out for the selected tags only
+  // checking index of selected tag and the tag
+  // indexOf, use id since it is more of a unique identifier than t.title
+  applyTags(tags) {
+    return (
+      tags &&
+      tags
+        .filter(t => this.state.selectedTags.indexOf(t.id) > -1)
+        .map(t => ({ title: t.title, id: t.id }))
+    );
+  }
+
+  // Convert the selected image into a base64 string so that we can store it our database.
+  getBase64Url() {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        resolve(
+          `data:${this.state.fileSelected.type};base64, ${btoa(
+            e.target.result
+          )}`
+        );
+      };
+      reader.readAsBinaryString(this.state.fileSelected);
+    });
+  }
+
+  handleSelectTags = event => {
+    this.setState({ selectedTags: event.target.value });
+  };
 
   handleToggle = value => () => {
     const { checked } = this.state;
@@ -43,10 +93,6 @@ class ShareItemForm extends Component {
     this.setState({
       checked: newChecked
     });
-  };
-
-  handleChange = event => {
-    this.setState({ checked: event.target.value });
   };
 
   onSubmit(input) {
@@ -69,7 +115,9 @@ class ShareItemForm extends Component {
   }
 
   render() {
-    const { classes, tags } = this.props;
+    const { classes, tags, updateItem, resetItem, resetItemImg } = this.props;
+    console.log(this.props);
+
     return (
       <Fragment>
         <Typography variant="display1" className={classes.headline}>
@@ -86,6 +134,16 @@ class ShareItemForm extends Component {
             // , submitting, pristine
           }) => (
             <form className={classes.container} onSubmit={handleSubmit}>
+              {/* Insert FormSpy */}
+              <FormSpy
+                subscription={{ values: true }}
+                component={({ values }) => {
+                  if (values) {
+                    this.dispatchUpdate(values, tags, updateItem);
+                  }
+                  return '';
+                }}
+              />
               <Button
                 variant="contained"
                 color="primary"
@@ -164,8 +222,8 @@ class ShareItemForm extends Component {
                 </InputLabel>
                 <Select
                   multiple
-                  value={this.state.checked}
-                  onChange={this.handleChange}
+                  value={this.state.selectedTags}
+                  onChange={this.handleSelectTags}
                   input={<Input id="select-multiple-checkbox" />}
                   renderValue={selected => selected.join(', ')}
                   className={classes.tags}
@@ -173,7 +231,7 @@ class ShareItemForm extends Component {
                   {tags.map(tag => (
                     <MenuItem key={tag.id} value={tag.title}>
                       <Checkbox
-                        checked={this.state.checked.indexOf(tag.title) > -1}
+                        checked={this.state.selectedTags.indexOf(tag.id) > -1}
                       />
                       <ListItemText primary={tag.title} />
                     </MenuItem>
@@ -225,8 +283,7 @@ const mapDispatchToProps = dispatch => ({
 // export default withStyles(styles)(ShareItemForm);
 // since we don't have mapStateToProps, it will be null
 // it is part of the first argument
-
 export default connect(
   null,
   mapDispatchToProps
-)(withStyles(ShareItemForm));
+)(withStyles(styles)(ShareItemForm));
