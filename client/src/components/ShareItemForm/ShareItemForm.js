@@ -19,7 +19,7 @@ import {
 } from '../../redux/modules/ShareItem';
 import { connect } from 'react-redux';
 
-// import { validate } from './helpers/validation';
+import { validate } from './helpers/validation';
 
 class ShareItemForm extends Component {
   constructor(props) {
@@ -90,6 +90,7 @@ class ShareItemForm extends Component {
     this.setState({ fileSelected: this.fileInput.current.files[0] });
   };
 
+  // is this needed?
   handleToggle = value => () => {
     const { checked } = this.state;
     const currentIndex = checked.indexOf(value);
@@ -110,20 +111,22 @@ class ShareItemForm extends Component {
     console.log('Submitting:', input);
   }
 
-  validate(o) {
-    console.log('Validating:', o);
-    const error = {};
-    if (!o.title) {
-      error.title = 'Title is required.';
-    }
-    if (!o.description) {
-      error.description = 'Description is required.';
-    }
-    if (!o.tag) {
-      error.tag = 'At least one tag is required.';
-    }
-    return error;
-  }
+  // validate();
+
+  // validate(o) {
+  //   console.log('Validating:', o);
+  //   const error = {};
+  //   if (!o.title) {
+  //     error.title = 'Title is required.';
+  //   }
+  //   if (!o.description) {
+  //     error.description = 'Description is required.';
+  //   }
+  //   if (!o.tag) {
+  //     error.tag = 'At least one tag is required.';
+  //   }
+  //   return error;
+  // }
 
   render() {
     const { classes, tags, updateItem, resetItem, resetItemImg } = this.props;
@@ -139,11 +142,14 @@ class ShareItemForm extends Component {
         </Typography>
         <Form
           onSubmit={this.onSubmit}
-          validate={this.validate}
-          render={({
-            handleSubmit
-            // , submitting, pristine
-          }) => (
+          validate={values => {
+            return validate(
+              values,
+              this.state.selectedTags,
+              this.state.fileSelected
+            );
+          }}
+          render={({ handleSubmit, submitting, pristine, invalid }) => (
             <form className={classes.container} onSubmit={handleSubmit}>
               {/* Insert FormSpy */}
               <FormSpy
@@ -156,16 +162,32 @@ class ShareItemForm extends Component {
                   return '';
                 }}
               />
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={() => {
-                  this.fileInput.current.click();
-                }}
-              >
-                Select An Image
-              </Button>
+              {/* write a tetrany stmt to show certain btns if a file is selected */}
+              {!this.state.fileSelected ? (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={() => {
+                    this.fileInput.current.click();
+                  }}
+                >
+                  Select An Image
+                </Button>
+              ) : (
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  className={classes.button}
+                  onClick={() => {
+                    this.fileInput.current.value = '';
+                    this.setState({ fileSelected: false });
+                    resetItemImg();
+                  }}
+                >
+                  Reset Image
+                </Button>
+              )}
               <input
                 type="file"
                 id="fileInput"
@@ -268,7 +290,7 @@ class ShareItemForm extends Component {
                 // color="primary"
                 // disabled
                 className={classes.shareButton}
-                // disabled={submitting || pristine}
+                disabled={submitting || pristine || invalid}
                 type="submit"
               >
                 Share
