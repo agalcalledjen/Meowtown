@@ -83,7 +83,7 @@ export const ALL_USER_ITEMS_QUERY = gql`
 `;
 
 export const ALL_TAGS_QUERY = gql`
-  query {
+  query tags {
     # @TODO: Query the id and title fields for tags.
     tags {
       id
@@ -107,23 +107,15 @@ export const ADD_ITEM_MUTATION = gql`
 /**
  * Auth-related queries and mutations.
  */
-
-const UPDATE_TODO = gql`
-  mutation UpdateTodo($id: String!, $type: String!) {
-    updateTodo(id: $id, type: $type) {
-      id
-      type
-    }
-  }
-`;
-
 export const VIEWER_QUERY = gql`
-  query {
+  query viewerQuery {
     # @TODO: Query the id, email, fullname, and bio fields for the viewer.
-    id
-    email
-    fullname
-    bio
+    viewer {
+      id
+      email
+      fullname
+      bio
+    }
   }
 `;
 

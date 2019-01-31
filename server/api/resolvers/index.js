@@ -23,11 +23,11 @@ const { UploadScalar, DateScalar } = require('../custom-types');
 
 module.exports = app => {
   return {
-    // Upload: UploadScalar,
-    // Date: DateScalar,
+    Upload: UploadScalar,
+    Date: DateScalar,
 
     Query: {
-      viewer() {
+      viewer(parent, args, { token }) {
         /**
          * @TODO: Authentication - Server
          *
@@ -42,6 +42,11 @@ module.exports = app => {
          *  the token's stored user here. If there is no token, the user has signed out,
          *  in which case you'll return null
          */
+        // const user = jwt.decode(token);
+        // console.log(user);
+        if (token) {
+          return jwt.decode(token, app.get('JWT_SECRET'));
+        }
         return null;
       },
       async user(parent, { id }, { pgResource }, info) {
@@ -227,9 +232,9 @@ module.exports = app => {
          */
 
         // const image = await image;
-        // const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
+        const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
 
-        const user = { id: 5 };
+        // const user = { id: 5 };
         const newItem = await pgResource.saveNewItem({
           item: args.item,
           // image: args.image,
