@@ -19,6 +19,14 @@ import Typography from '@material-ui/core/Typography';
  * import { graphql, compose } from 'react-apollo';
  * import validate from './helpers/validation'
  */
+import { Form, Field } from 'react-final-form';
+import {
+  LOGIN_MUTATION,
+  SIGNUP_MUTATION,
+  VIEWER_QUERY // this asks for the cookie
+} from '../../apollo/queries';
+import { graphql, compose } from 'react-apollo';
+import validate from './helpers/validation';
 
 import styles from './styles';
 
@@ -31,6 +39,8 @@ class AccountForm extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     const { classes } = this.props;
 
     return (
@@ -95,6 +105,30 @@ class AccountForm extends Component {
               variant="contained"
               size="large"
               color="secondary"
+              onClick={e => {
+                e.preventDefault();
+
+                if (this.state.formToggle) {
+                  this.props.loginMutation({
+                    variables: {
+                      user: {
+                        email: 'email2@gmail.com',
+                        password: '12345'
+                      } // TODO: get login from form inputs
+                    }
+                  });
+                } else {
+                  this.props.signupMutation({
+                    variables: {
+                      user: {
+                        fullname: '',
+                        email: '',
+                        password: ''
+                      } // TODO: get user from form inputs
+                    }
+                  });
+                }
+              }}
               disabled={
                 false // @TODO: This prop should depend on pristine or valid state of form
               }
@@ -130,4 +164,14 @@ class AccountForm extends Component {
 
 // @TODO: Use compose to add the login and signup mutations to this components props.
 // @TODO: Refetch the VIEWER_QUERY to reload the app and access authenticated routes.
-export default withStyles(styles)(AccountForm);
+// export default withStyles(styles)(AccountForm);
+
+export default compose(
+  graphql(SIGNUP_MUTATION, {
+    name: 'signupMutation'
+  }),
+  graphql(LOGIN_MUTATION, {
+    name: 'loginMutation'
+  }),
+  withStyles(styles)
+)(AccountForm);

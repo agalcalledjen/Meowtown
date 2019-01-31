@@ -63,13 +63,13 @@ module.exports = gql`
     tags: [AssignedTag]!
   }
 
-  input NewUser {
+  input SignupInput {
     fullname: String!
     email: String!
     password: String!
   }
 
-  input Login {
+  input LoginInput {
     email: String!
     password: String!
   }
@@ -83,8 +83,8 @@ module.exports = gql`
 
   type Mutation {
     addItem(item: NewItemInput!, image: Upload): Item
-    signup(user: NewUser!): ID!
-    login(user: Login!): ID!
+    signup(user: SignupInput!): ID!
+    login(user: LoginInput!): ID!
     logout: Boolean
   }
   # need mutation named signup

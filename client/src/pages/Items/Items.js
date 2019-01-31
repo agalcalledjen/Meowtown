@@ -1,6 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ItemsGrid from '../../components/ItemsGrid';
-import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 

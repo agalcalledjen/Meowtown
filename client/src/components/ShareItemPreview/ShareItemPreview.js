@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ItemCard from './../ItemCard/ItemCard';
 import { connect } from 'react-redux';
 
