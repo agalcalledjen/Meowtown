@@ -34,6 +34,7 @@ module.exports = postgres => {
         const user = await postgres.query(newUserInsert);
         return user.rows[0];
       } catch (e) {
+        // console.log(e);
         switch (true) {
           case /users_name_key/.test(e.message):
             throw 'An account with this username already exists.';

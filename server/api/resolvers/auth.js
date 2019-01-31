@@ -8,7 +8,7 @@ function setCookie({ tokenName, token, res }) {
    *
    *  This helper function is responsible for attaching a cookie to the HTTP
    *  response. 'apollo-server-express' handles returning the response to the client.
-   *  We added the 'req' object to the resolver context so we can use it to atttach the cookie.
+   *  We added the 'req' object to the resolver context so we can use it to attach the cookie.
    *  The 'req' object comes from express.
    *
    *  A secure cookie that can be used to store a user's session data has the following properties:
@@ -19,12 +19,15 @@ function setCookie({ tokenName, token, res }) {
   // Refactor this method with the correct configuration values.
   res.cookie(tokenName, token, {
     // @TODO: Supply the correct configuration values for our cookie here
+    maxAge: 1000 * 60 * 120,
+    httpOnly: true
   });
   // -------------------------------
 }
 
 function generateToken(user, secret) {
   const { id, email, fullname, bio } = user; // Omit the password from the token
+  const token = jwt.sign({ id, email, fullname, bio }, secret);
   /**
    *  @TODO: Authentication - Server
    *
@@ -35,13 +38,16 @@ function generateToken(user, secret) {
    *  which can be decoded using the app secret to retrieve the stateless session.
    */
   // Refactor this return statement to return the cryptographic hash (the Token)
-  return '';
+  return token;
   // -------------------------------
 }
 
-module.exports = (app) => {
+module.exports = app => {
   return {
     async signup(parent, args, context) {
+      // To see what we had put in graphql & delete it in final project
+      // console.log(args);
+
       try {
         /**
          * @TODO: Authentication - Server
@@ -54,11 +60,13 @@ module.exports = (app) => {
          * and store that instead. The password can be decoded using the original password.
          */
         // @TODO: Use bcrypt to generate a cryptographic hash to conceal the user's password before storing it.
-        const hashedPassword = '';
+        // const hashedPassword = '';
+        const hashedPassword = await bcrypt.hash(args.user.password, 10);
+        // console.log(hashedPassword, args.user.password);
         // -------------------------------
 
         const user = await context.pgResource.createUser({
-          fullname: args.user.fullname,
+          name: args.user.fullname,
           email: args.user.email,
           password: hashedPassword
         });
@@ -69,15 +77,21 @@ module.exports = (app) => {
           res: context.req.res
         });
 
-        return {
-          id: user.id
-        };
+        // return {
+        //   id: user.id
+        // };
+
+        // return 'Signup working.';
+        return user.id;
       } catch (e) {
         throw new AuthenticationError(e);
       }
     },
 
     async login(parent, args, context) {
+      // To see what we had put in graphql & delete it in final project
+      console.log(args);
+
       try {
         const user = await context.pgResource.getUserAndPasswordForVerification(
           args.user.email
@@ -90,7 +104,7 @@ module.exports = (app) => {
          *  they submitted from the login form to decrypt the 'hashed' version stored in out database.
          */
         // Use bcrypt to compare the provided password to 'hashed' password stored in your database.
-        const valid = false;
+        const valid = await bcrypt.compare(args.user.password, user.password);
         // -------------------------------
         if (!valid || !user) throw 'User was not found.';
 
@@ -100,9 +114,11 @@ module.exports = (app) => {
           res: context.req.res
         });
 
-        return {
-          id: user.id
-        };
+        // return {
+        //   id: user.id
+        // };
+        // return 'Login working.';
+        return user.id;
       } catch (e) {
         throw new AuthenticationError(e);
       }

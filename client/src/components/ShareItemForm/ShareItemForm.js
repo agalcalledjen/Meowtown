@@ -273,7 +273,10 @@ class ShareItemForm extends Component {
                               this.state.selectedTags.indexOf(tag.id) > -1
                             }
                           />
-                          <ListItemText primary={tag.title} />
+                          <ListItemText
+                            primary={tag.title}
+                            className={classes.capitalize}
+                          />
                         </MenuItem>
                       ))}
                     </Select>

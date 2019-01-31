@@ -9,8 +9,8 @@ const styles = theme => ({
   title: {
     color: theme.palette.text.primary
   },
-  tags: {
-    // color: 'rgba(0, 0, 0, 0.54)'
+  capitalize: {
+    textTransform: 'capitalize',
     color: theme.palette.text.secondary
   },
   button: {

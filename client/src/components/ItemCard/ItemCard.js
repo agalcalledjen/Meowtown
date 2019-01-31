@@ -59,7 +59,7 @@ const ItemCard = ({ classes, item }) => {
             variant="body1"
             gutterBottom
             // key={tag.id}
-            className={classes.tags}
+            className={classes.capitalize}
           >
             {item.tags.map(tag => tag.title).join(', ')}
           </Typography>
