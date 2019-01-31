@@ -39,7 +39,7 @@ class AccountForm extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     const { classes } = this.props;
 
@@ -166,11 +166,33 @@ class AccountForm extends Component {
 // @TODO: Refetch the VIEWER_QUERY to reload the app and access authenticated routes.
 // export default withStyles(styles)(AccountForm);
 
+// export default compose(
+//   graphql(SIGNUP_MUTATION, {
+//     name: 'signupMutation'
+//   }),
+//   graphql(LOGIN_MUTATION, {
+//     name: 'loginMutation'
+//   }),
+//   withStyles(styles)
+// )(AccountForm);
+
+const refetchQueries = [
+  {
+    query: VIEWER_QUERY
+  }
+];
+
 export default compose(
   graphql(SIGNUP_MUTATION, {
+    options: {
+      refetchQueries
+    },
     name: 'signupMutation'
   }),
   graphql(LOGIN_MUTATION, {
+    options: {
+      refetchQueries
+    },
     name: 'loginMutation'
   }),
   withStyles(styles)

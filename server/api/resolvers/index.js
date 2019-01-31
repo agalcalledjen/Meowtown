@@ -46,8 +46,9 @@ module.exports = app => {
         // console.log(user);
         if (token) {
           return jwt.decode(token, app.get('JWT_SECRET'));
+        } else {
+          return null;
         }
-        return null;
       },
       async user(parent, { id }, { pgResource }, info) {
         try {

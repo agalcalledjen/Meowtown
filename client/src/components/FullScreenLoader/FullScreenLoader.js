@@ -5,3 +5,5 @@ const FullScreenLoader = ({ classes }) => {
 };
 
 export default FullScreenLoader;
+
+// TODO: return an image of cat img spinning for the loading thing
