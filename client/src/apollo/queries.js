@@ -23,7 +23,7 @@ const ItemFields = gql`
     title
     imageurl
     description
-    # created
+    created
     tags {
       id
       title

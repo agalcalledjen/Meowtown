@@ -12,7 +12,25 @@ import Gravatar from 'react-gravatar';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 
+// const daysCreated = ({ item }) => {
+//   const dateNow = Date.now();
+//   const minutes = 1000 * 60;
+//   const hours = minutes * 60;
+//   const days = hours * 24;
+//   const years = days * 365;
+//   const daysCounted = Math.round((dateNow - item.created) / days);
+
+//   return daysCounted;
+// };
+
 const ItemCard = ({ classes, item }) => {
+  const dateNow = Date.now();
+  const minutes = 1000 * 60;
+  const hours = minutes * 60;
+  const days = hours * 24;
+
+  const daysCounted = Math.round((dateNow - item.created) / days);
+
   return (
     <Card className={classes.card}>
       <Fragment>
@@ -43,7 +61,9 @@ const ItemCard = ({ classes, item }) => {
                 gutterBottom
                 className={classes.ownerName}
               >
-                {item.created}
+                {daysCounted > 1
+                  ? daysCounted + ' days ago'
+                  : daysCounted + ' day ago'}
               </Typography>
             </Grid>
           </Grid>
