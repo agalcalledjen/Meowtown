@@ -43,7 +43,7 @@ const ItemCard = ({ classes, item }) => {
                 gutterBottom
                 className={classes.ownerName}
               >
-                {item.itemowner.fullname}
+                {item.created}
               </Typography>
             </Grid>
           </Grid>

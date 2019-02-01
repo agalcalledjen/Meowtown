@@ -7,9 +7,16 @@ import styles from './styles';
 
 const ItemsGrid = ({ classes, items }) => {
   return (
-    <Grid container className={classes.itemsRoot} spacing={24}>
+    <Grid container className={classes.itemsRoot} spacing={24} justify="center">
       {items.map(item => (
-        <Grid item xs={4} className={classes.control} key={item.id}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          lg={4}
+          className={classes.control}
+          key={item.id}
+        >
           <ItemCard item={item} />
         </Grid>
       ))}

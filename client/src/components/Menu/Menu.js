@@ -5,9 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import UserAcct from '@material-ui/icons/MoreVert';
-// import Switch from '@material-ui/core/Switch';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import logo from '../../images/boomtown.svg';
@@ -20,10 +17,8 @@ import SignoutIcon from '@material-ui/icons/PowerSettingsNew';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
 import { Link } from 'react-router-dom';
-// import { ApolloConsumer } from 'react-apollo';
 import { Form, Field } from 'react-final-form';
 import {
-  LOGIN_MUTATION,
   LOGOUT_MUTATION,
   VIEWER_QUERY // this asks for the cookie
 } from '../../apollo/queries';
@@ -56,18 +51,6 @@ class MenuAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/*         <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={auth}
-                onChange={this.handleChange}
-                aria-label="LoginSwitch"
-              />
-            }
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup> */}
         <AppBar position="static">
           <Toolbar>
             <IconButton
@@ -128,16 +111,9 @@ class MenuAppBar extends React.Component {
                       primary="Your Profile"
                     />
                   </MenuItem>
-                  {/* <ApolloConsumer>
-                    {client => ( */}
                   <MenuItem
                     className={classes.menuItem}
                     // onClick={this.handleClose}
-                    // onClick={() => {
-                    //   // client.writeData({ data: { isLoggedIn: false } });
-                    //   client.writeData({ data: { isLoggedIn: false } });
-                    //   localStorage.clear();
-                    // }}
                     onClick={this.props.logoutMutation}
                     component={Link}
                     to="/welcome"
@@ -151,8 +127,6 @@ class MenuAppBar extends React.Component {
                       primary="Sign Out"
                     />
                   </MenuItem>
-                  {/* )}
-                  </ApolloConsumer> */}
                 </Menu>
               </div>
             )}
