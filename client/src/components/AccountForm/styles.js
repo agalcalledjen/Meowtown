@@ -22,6 +22,10 @@ const styles = theme => ({
   },
   errorMessage: {
     color: 'firebrick'
+  },
+  error: {
+    color: 'red',
+    fontSize: '1rem'
   }
 });
 

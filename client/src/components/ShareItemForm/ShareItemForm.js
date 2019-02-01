@@ -111,23 +111,6 @@ class ShareItemForm extends Component {
     console.log('Submitting:', input);
   }
 
-  // validate();
-
-  // validate(o) {
-  //   console.log('Validating:', o);
-  //   const error = {};
-  //   if (!o.title) {
-  //     error.title = 'Title is required.';
-  //   }
-  //   if (!o.description) {
-  //     error.description = 'Description is required.';
-  //   }
-  //   if (!o.tag) {
-  //     error.tag = 'At least one tag is required.';
-  //   }
-  //   return error;
-  // }
-
   render() {
     const { classes, tags, updateItem, resetItem, resetItemImg } = this.props;
     console.log(this.props);

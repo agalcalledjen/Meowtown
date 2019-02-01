@@ -20,6 +20,7 @@ import SignoutIcon from '@material-ui/icons/PowerSettingsNew';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
 import { Link } from 'react-router-dom';
+import { ApolloConsumer } from 'react-apollo';
 
 import styles from './styles';
 
@@ -120,9 +121,18 @@ class MenuAppBar extends React.Component {
                       primary="Your Profile"
                     />
                   </MenuItem>
+                  {/* <ApolloConsumer>
+                    {client => ( */}
                   <MenuItem
                     className={classes.menuItem}
                     onClick={this.handleClose}
+                    // onClick={() => {
+                    //   // client.writeData({ data: { isLoggedIn: false } });
+                    //   client.writeData({ data: { isLoggedIn: false } });
+                    //   localStorage.clear();
+                    // }}
+                    component={Link}
+                    to="/welcome"
                   >
                     <ListItemIcon className={classes.icon}>
                       <SignoutIcon />
@@ -133,6 +143,8 @@ class MenuAppBar extends React.Component {
                       primary="Sign Out"
                     />
                   </MenuItem>
+                  {/* )}
+                  </ApolloConsumer> */}
                 </Menu>
               </div>
             )}

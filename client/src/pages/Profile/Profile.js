@@ -9,23 +9,6 @@ import Gravatar from 'react-gravatar';
 import Avatar from '@material-ui/core/Avatar';
 import ItemsGrid from '../../components/ItemsGrid';
 
-// const ItemCount = ({ sharedItems }) => {
-//   return (
-//     <span>
-//       {sharedItems}
-//       {sharedItems > 1 ? ' Items' : ' Item'}
-//     </span>
-//   );
-// };
-
-// ItemCount.defaultProps = {
-//   sharedItems: 0
-// };
-
-// ItemCount.propTypes = {
-//   sharedItems: PropTypes.number.isRequired
-// };
-
 const Profile = ({ classes, user }) => {
   // const profile = user;
   // console.log(profile);
