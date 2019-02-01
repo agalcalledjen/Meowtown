@@ -38,8 +38,35 @@ class AccountForm extends Component {
     };
   }
 
-  onSubmit(input) {
-    console.log('Submitting:', input);
+  // onSubmit = values => {
+  //   console.log('Submitting:', values);
+
+  //   if (this.state.formToggle) {
+  //     this.props.loginMutation({
+  //       variables: {
+  //         user:
+  //           // email: 'email2@gmail.com',
+  //           // password: '12345'
+  //           values
+  //         // TODO: get login from form inputs
+  //       }
+  //     });
+  //   } else {
+  //     this.props.signupMutation({
+  //       variables: {
+  //         user:
+  //           // fullname: '',
+  //           // email: '',
+  //           // password: ''
+  //           values
+  //         // TODO: get user from form inputs
+  //       }
+  //     });
+  //   }
+  // };
+
+  onSubmit(values) {
+    console.log('Submitting:', values);
   }
 
   render() {

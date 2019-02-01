@@ -217,7 +217,7 @@ module.exports = app => {
       ...authMutations(app),
       // -------------------------------
 
-      async addItem(parent, args, { pgResource }, info) {
+      async addItem(parent, args, { pgResource, token }, info) {
         // token is part of authentication
         /**
          *  @TODO: Destructuring
@@ -233,7 +233,7 @@ module.exports = app => {
          */
 
         // const image = await image;
-        const user = await jwt.decode(pgResource.token, app.get('JWT_SECRET'));
+        const user = await jwt.decode(token, app.get('JWT_SECRET'));
 
         // const user = { id: 5 };
         const newItem = await pgResource.saveNewItem({

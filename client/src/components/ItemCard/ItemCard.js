@@ -83,7 +83,8 @@ const ItemCard = ({ classes, item }) => {
           >
             {item.tags.map(tag => tag.title).join(', ')}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          {/* <Typography variant="body1" gutterBottom> */}
+          <Typography variant="headline" gutterBottom>
             {item.description}
           </Typography>
         </CardContent>

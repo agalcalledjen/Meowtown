@@ -7,7 +7,12 @@ import styles from './styles';
 
 const ItemsGrid = ({ classes, items }) => {
   return (
-    <Grid container className={classes.itemsRoot} spacing={24} justify="center">
+    <Grid
+      container
+      className={classes.itemsRoot}
+      spacing={24}
+      justify="space-between"
+    >
       {items.map(item => (
         <Grid
           item

@@ -109,20 +109,9 @@ class ShareItemForm extends Component {
     });
   };
 
-  // onSubmit = values => {
-  //   console.log(value);
-  //   addItemMutation({
-  //     variables: {
-  //       item: {
-  //         ...values,
-  //         tags: this.state.selectedTags.map(tag => ({
-  //           id: tag,
-  //           title: ''
-  //         }))
-  //       }
-  //     }
-  //   });
-  // };
+  onSubmit = values => {
+    console.log(values);
+  };
 
   render() {
     const { classes, tags, updateItem, resetItem, resetItemImg } = this.props;
@@ -136,32 +125,39 @@ class ShareItemForm extends Component {
         <Typography variant="display1" className={classes.headline}>
           Prosper.
         </Typography>
-        <Mutation mutation={ADD_ITEM_MUTATION}>
-          {addItemMutation => {
-            return (
-              <Form
-                onSubmit={values => {
-                  addItemMutation({
-                    variables: {
-                      item: {
-                        ...values,
-                        tags: this.state.selectedTags.map(tag => ({
-                          id: tag,
-                          title: ''
-                        }))
-                      }
-                    }
-                  });
-                }}
-                validate={values => {
-                  return validate(
-                    values,
-                    this.state.selectedTags,
-                    this.state.fileSelected
-                  );
-                }}
-                render={({ handleSubmit, submitting, pristine, invalid }) => (
-                  <form className={classes.container} onSubmit={handleSubmit}>
+
+        <Form
+          // onSubmit={() => {
+          //   this.onSubmit(values);
+          // }}
+          validate={values => {
+            return validate(
+              values,
+              this.state.selectedTags,
+              this.state.fileSelected
+            );
+          }}
+          render={({ handleSubmit, submitting, pristine, invalid, values }) => (
+            <Mutation mutation={ADD_ITEM_MUTATION}>
+              {addItemMutation => {
+                console.log(addItemMutation);
+                return (
+                  <form
+                    className={classes.container}
+                    onSubmit={e => {
+                      e.preventDefault();
+
+                      addItemMutation({
+                        variables: {
+                          item: {
+                            title: 'asdfaf',
+                            description: 'asdfasdf',
+                            tags: { id: 1 }
+                          }
+                        }
+                      });
+                    }}
+                  >
                     {/* Insert FormSpy */}
                     <FormSpy
                       subscription={{ values: true }}
@@ -311,11 +307,11 @@ class ShareItemForm extends Component {
                       Share
                     </Button>
                   </form>
-                )}
-              />
-            );
-          }}
-        </Mutation>
+                );
+              }}
+            </Mutation>
+          )}
+        />
       </Fragment>
     );
   }

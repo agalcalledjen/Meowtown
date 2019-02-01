@@ -100,6 +100,12 @@ export const ADD_ITEM_MUTATION = gql`
     # and return the new item id when the mutation is complete.
     addItem(item: $item) {
       id
+      title
+      description
+      tags {
+        id
+        title
+      }
     }
   }
 `;
