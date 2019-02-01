@@ -4,7 +4,9 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 1.5
   },
   media: {
-    height: 270
+    // height: 270
+    height: 0,
+    paddingTop: '56.25%'
   },
   title: {
     color: theme.palette.text.primary

@@ -12,11 +12,12 @@ const ShareItemPreview = ({ shareItemPreview }) => {
 
 // export default ShareItemPreview;
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
   // This is the reducer we set up in Exercise 3
   // implicit return
-  shareItemPreview: state.shareItemPreview
-});
+  // shareItemPreview: state.shareItemPreview
+  return { ...state };
+};
 
 // connect is a fx that takes in two arguments, mapStateToProps and ShareItemPreview
 export default connect(mapStateToProps)(ShareItemPreview);

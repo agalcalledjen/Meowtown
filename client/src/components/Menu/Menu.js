@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +16,7 @@ import SignoutIcon from '@material-ui/icons/PowerSettingsNew';
 
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
 import {
   LOGOUT_MUTATION,
@@ -45,9 +45,15 @@ class MenuAppBar extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, history } = this.props;
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
+    // console.log(history);
+
+    // const sharePgBg =
+    //   location.pathname === '/share'
+    //     ? { background: 'white' }
+    //     : { background: '#212121' };
 
     return (
       <div className={classes.root}>
@@ -63,14 +69,18 @@ class MenuAppBar extends React.Component {
               <img src={logo} className="App-logo" alt="logo" width="40" />
             </IconButton>
             <div className={classes.grow} />
-            <Button
-              href="/share"
-              // className={(classes.margin, classes.shareButton)}
-              className={classes.shareButton}
-            >
+            {history.location.pathname === '/share' ? (
+              <Fragment />
+            ) : (
+              <Button href="/share" className={classes.shareButton}>
+                <AddIcon className={classes.margin} />
+                SHARE SOMETHING
+              </Button>
+            )}
+            {/* <Button href="/share" className={classes.shareButton}>
               <AddIcon className={classes.margin} />
               SHARE SOMETHING
-            </Button>
+            </Button> */}
             {auth && (
               <div>
                 <IconButton
@@ -149,18 +159,14 @@ const refetchQueries = [
   }
 ];
 
-export default compose(
-  graphql(LOGOUT_MUTATION, {
-    options: {
-      refetchQueries
-    },
-    name: 'logoutMutation'
-  }),
-  // graphql(LOGIN_MUTATION, {
-  //   options: {
-  //     refetchQueries
-  //   },
-  //   name: 'loginMutation'
-  // }),
-  withStyles(styles)
-)(MenuAppBar);
+export default withRouter(
+  compose(
+    graphql(LOGOUT_MUTATION, {
+      options: {
+        refetchQueries
+      },
+      name: 'logoutMutation'
+    }),
+    withStyles(styles)
+  )(MenuAppBar)
+);

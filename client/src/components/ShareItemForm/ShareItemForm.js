@@ -126,7 +126,7 @@ class ShareItemForm extends Component {
 
   render() {
     const { classes, tags, updateItem, resetItem, resetItemImg } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <Fragment>
@@ -140,7 +140,7 @@ class ShareItemForm extends Component {
           {addItemMutation => {
             return (
               <Form
-                onSubmit={values => {
+                onSubmit={async values => {
                   addItemMutation({
                     variables: {
                       item: {
@@ -160,8 +160,28 @@ class ShareItemForm extends Component {
                     this.state.fileSelected
                   );
                 }}
-                render={({ handleSubmit, submitting, pristine, invalid }) => (
-                  <form className={classes.container} onSubmit={handleSubmit}>
+                render={({
+                  handleSubmit,
+                  submitting,
+                  pristine,
+                  invalid,
+                  form
+                }) => (
+                  <form
+                    className={classes.container}
+                    onSubmit={event =>
+                      handleSubmit(event).then(() => {
+                        this.fileInput.current.value = '';
+                        this.setState({ fileSelected: false });
+                        // resetItemImg();
+
+                        form.reset();
+                        resetItem();
+                        this.setState({ selectedTags: [] });
+                        return false;
+                      })
+                    }
+                  >
                     {/* Insert FormSpy */}
                     <FormSpy
                       subscription={{ values: true }}
@@ -302,11 +322,19 @@ class ShareItemForm extends Component {
 
                     <Button
                       variant="contained"
-                      // color="primary"
+                      color="primary"
                       // disabled
                       className={classes.shareButton}
                       disabled={submitting || pristine || invalid}
                       type="submit"
+                      // onClick={() => {
+                      //   this.fileInput.current.value = '';
+                      //   this.setState({ fileSelected: false });
+                      //   form.reset();
+                      //   resetItem();
+                      //   this.setState({ selectedTags: [] });
+                      //   return false;
+                      // }}
                     >
                       Share
                     </Button>
