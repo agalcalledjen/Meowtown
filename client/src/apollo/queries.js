@@ -120,7 +120,7 @@ export const VIEWER_QUERY = gql`
 `;
 
 export const LOGOUT_MUTATION = gql`
-  mutation {
+  mutation logout {
     # @TODO: Run the logout mutation.
     logout
   }

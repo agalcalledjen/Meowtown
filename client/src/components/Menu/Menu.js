@@ -20,7 +20,14 @@ import SignoutIcon from '@material-ui/icons/PowerSettingsNew';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
 import { Link } from 'react-router-dom';
-import { ApolloConsumer } from 'react-apollo';
+// import { ApolloConsumer } from 'react-apollo';
+import { Form, Field } from 'react-final-form';
+import {
+  LOGIN_MUTATION,
+  LOGOUT_MUTATION,
+  VIEWER_QUERY // this asks for the cookie
+} from '../../apollo/queries';
+import { graphql, compose } from 'react-apollo';
 
 import styles from './styles';
 
@@ -125,12 +132,13 @@ class MenuAppBar extends React.Component {
                     {client => ( */}
                   <MenuItem
                     className={classes.menuItem}
-                    onClick={this.handleClose}
+                    // onClick={this.handleClose}
                     // onClick={() => {
                     //   // client.writeData({ data: { isLoggedIn: false } });
                     //   client.writeData({ data: { isLoggedIn: false } });
                     //   localStorage.clear();
                     // }}
+                    onClick={this.props.logoutMutation}
                     component={Link}
                     to="/welcome"
                   >
@@ -159,4 +167,26 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuAppBar);
+// export default withStyles(styles)(MenuAppBar);
+
+const refetchQueries = [
+  {
+    query: VIEWER_QUERY
+  }
+];
+
+export default compose(
+  graphql(LOGOUT_MUTATION, {
+    options: {
+      refetchQueries
+    },
+    name: 'logoutMutation'
+  }),
+  // graphql(LOGIN_MUTATION, {
+  //   options: {
+  //     refetchQueries
+  //   },
+  //   name: 'loginMutation'
+  // }),
+  withStyles(styles)
+)(MenuAppBar);
