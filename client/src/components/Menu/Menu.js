@@ -23,13 +23,15 @@ import {
   VIEWER_QUERY // this asks for the cookie
 } from '../../apollo/queries';
 import { graphql, compose } from 'react-apollo';
+import Slide from '@material-ui/core/Slide';
 
 import styles from './styles';
 
 class MenuAppBar extends React.Component {
   state = {
     auth: true,
-    anchorEl: null
+    anchorEl: null,
+    shareBtn: true
   };
 
   handleChange = event => {
@@ -44,8 +46,13 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  shareHandleChange = () => {
+    this.setState(state => ({ shareBtn: !state.shareBtn }));
+  };
+
   render() {
     const { classes, history } = this.props;
+    const { shareBtn } = this.state;
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
     // console.log(history);
@@ -69,14 +76,31 @@ class MenuAppBar extends React.Component {
               <img src={logo} className="App-logo" alt="logo" width="40" />
             </IconButton>
             <div className={classes.grow} />
-            {history.location.pathname === '/share' ? (
+            {/* {history.location.pathname === '/share' ? (
               <Fragment />
             ) : (
               <Button href="/share" className={classes.shareButton}>
                 <AddIcon className={classes.margin} />
                 SHARE SOMETHING
               </Button>
+            )} */}
+            {history.location.pathname === '/share' ? (
+              <Fragment />
+            ) : (
+              <Slide direction="left" in={shareBtn} mountOnEnter unmountOnExit>
+                <Button
+                  href="/share"
+                  className={classes.shareButton}
+                  // onClick={() => {
+                  //   return false;
+                  // }}
+                >
+                  <AddIcon className={classes.margin} />
+                  SHARE SOMETHING
+                </Button>
+              </Slide>
             )}
+
             {/* <Button href="/share" className={classes.shareButton}>
               <AddIcon className={classes.margin} />
               SHARE SOMETHING

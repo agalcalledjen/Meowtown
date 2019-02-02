@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core';
 import Gravatar from 'react-gravatar';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
+import { Link, withRouter } from 'react-router-dom';
 
 // const daysCreated = ({ item }) => {
 //   const dateNow = Date.now();
@@ -23,7 +24,7 @@ import Grid from '@material-ui/core/Grid';
 //   return daysCounted;
 // };
 
-const ItemCard = ({ classes, item }) => {
+const ItemCard = ({ classes, item, user }) => {
   const dateNow = Date.now();
   const minutes = 1000 * 60;
   const hours = minutes * 60;
@@ -38,6 +39,8 @@ const ItemCard = ({ classes, item }) => {
           className={classes.media}
           image={item.imageurl}
           title={item.title}
+          component={Link}
+          to={`/profile/${item.itemowner.id}`}
         />
         <CardContent>
           <Grid container className={classes.owner} alignItems="center">
@@ -125,7 +128,7 @@ ItemCard.defaultProps = {
   }
 };
 
-export default withStyles(styles)(ItemCard);
+export default withRouter(withStyles(styles)(ItemCard));
 
 // put the mapping over here and grab the itemcard from components
 // itemcard is a component since it is useable

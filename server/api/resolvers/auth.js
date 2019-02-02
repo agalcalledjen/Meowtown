@@ -26,8 +26,16 @@ function setCookie({ tokenName, token, res }) {
 }
 
 function generateToken(user, secret) {
-  const { id, email, fullname, bio } = user; // Omit the password from the token
-  const token = jwt.sign({ id, email, fullname, bio }, secret);
+  console.log('>>>>>>>>>>>>>>>>>' + user);
+  // const userForToken = {
+  //   fullname: user.name,
+  //   email: user.email,
+  //   bio: user.bio,
+  //   id: user.id
+  // }; // Omit the password from the token
+  const { id, email, fullname, bio } = user;
+
+  const token = jwt.sign(user, secret);
   /**
    *  @TODO: Authentication - Server
    *
@@ -61,12 +69,13 @@ module.exports = app => {
          */
         // @TODO: Use bcrypt to generate a cryptographic hash to conceal the user's password before storing it.
         // const hashedPassword = '';
+
         const hashedPassword = await bcrypt.hash(args.user.password, 10);
         // console.log(hashedPassword, args.user.password);
         // -------------------------------
 
         const user = await context.pgResource.createUser({
-          name: args.user.fullname,
+          fullname: args.user.fullname,
           email: args.user.email,
           password: hashedPassword
         });
@@ -82,7 +91,7 @@ module.exports = app => {
         // };
 
         // return 'Signup working.';
-        return user.id;
+        return user;
       } catch (e) {
         throw new AuthenticationError(e);
       }

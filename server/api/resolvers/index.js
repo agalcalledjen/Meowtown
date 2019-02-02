@@ -43,7 +43,7 @@ module.exports = app => {
          *  in which case you'll return null
          */
         // const user = jwt.decode(token);
-        // console.log(user);
+        console.log(jwt.decode(token, app.get('JWT_SECRET')));
         if (token) {
           return jwt.decode(token, app.get('JWT_SECRET'));
         } else {

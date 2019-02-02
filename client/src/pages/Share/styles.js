@@ -4,7 +4,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 12,
     // paddingTop: 0,
     // paddingBottom: theme.spacing.unit * 6,
-    // background: 'white',
+    background: 'white',
     height: '100vh'
   }
   // w75: {
