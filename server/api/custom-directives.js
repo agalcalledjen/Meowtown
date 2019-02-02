@@ -69,7 +69,13 @@ class AuthDirective extends SchemaDirectiveVisitor {
          */
         console.log(context);
 
-        return resolve.apply(this, [parent, args, context, info]);
+        if (context.jwt) {
+          return resolve.apply(this, [parent, args, context, info]);
+        } else {
+          throw ForbiddenError('You must have authorization for access.');
+        }
+
+        // return resolve.apply(this, [parent, args, context, info]);
       };
     });
   }

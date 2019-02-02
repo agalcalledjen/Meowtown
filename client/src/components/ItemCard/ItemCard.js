@@ -24,7 +24,7 @@ import { Link, withRouter } from 'react-router-dom';
 //   return daysCounted;
 // };
 
-const ItemCard = ({ classes, item, user }) => {
+const ItemCard = ({ classes, item }) => {
   const dateNow = Date.now();
   const minutes = 1000 * 60;
   const hours = minutes * 60;
