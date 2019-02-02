@@ -32,9 +32,8 @@ class HomeContainer extends Component {
     // return <Home classes={this.props.classes} />;
   }
 } */
-class HomeContainer extends Component {
-  render() {
-    return <Home classes={this.props.classes} />;
-  }
-}
+const HomeContainer = ({ classes }) => {
+  return <Home classes={classes} />;
+};
+
 export default withStyles(styles)(HomeContainer);

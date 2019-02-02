@@ -11,8 +11,8 @@ const ProfileContainer = ({ classes, match }) => {
   // profile/userid here
   // const id = match.params.userid || '1';
   const id = match.params.userid;
-  console.log(match.params);
-  // console.log('VIEWER>>>>' + viewer);
+  // To view profile of itemowner
+  // console.log(match.params);
 
   return (
     <ViewerContext.Consumer>
