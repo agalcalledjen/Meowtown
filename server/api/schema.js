@@ -12,10 +12,15 @@ const { gql } = require('apollo-server-express');
  */
 module.exports = gql`
   scalar Upload
-
   scalar Date
 
-  type Item {
+  enum Role {
+    VIEWER
+  }
+
+  directive @auth(requires: Role = VIEWER) on OBJECT | FIELD_DEFINITION
+
+  type Item @auth(requires: VIEWER) {
     id: ID!
     title: String!
     imageurl: String
@@ -26,7 +31,7 @@ module.exports = gql`
     borrower: User
   }
 
-  type User {
+  type User @auth(requires: VIEWER) {
     id: ID!
     email: String!
     fullname: String!
@@ -40,7 +45,7 @@ module.exports = gql`
     title: String!
   }
 
-  type File {
+  type File @auth(requires: VIEWER) {
     id: ID!
     filename: String!
     mimetype: String!

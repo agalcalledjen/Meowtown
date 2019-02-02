@@ -1,3 +1,6 @@
+// import custom directive class
+import { AuthDirective } from '../api/custom-directives';
+
 const { ApolloServer } = require('apollo-server-express');
 const { apolloUploadExpress } = require('apollo-upload-server');
 const { makeExecutableSchema } = require('graphql-tools');
@@ -19,7 +22,13 @@ module.exports = ({ app, pgResource }) => {
    */
 
   // @TODO: Refactor to use 'makeExecutableSchema' to wire up your schema to your resolvers:
-  const schema = makeExecutableSchema({ typeDefs, resolvers });
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers,
+    schemaDirectives: {
+      auth: AuthDirective
+    }
+  });
   // -------------------------------
 
   const apolloServer = new ApolloServer({

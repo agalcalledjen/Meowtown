@@ -17,7 +17,7 @@ import SignoutIcon from '@material-ui/icons/PowerSettingsNew';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
 import { Link, withRouter } from 'react-router-dom';
-import { Form, Field } from 'react-final-form';
+
 import {
   LOGOUT_MUTATION,
   VIEWER_QUERY // this asks for the cookie

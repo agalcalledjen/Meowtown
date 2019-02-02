@@ -26,7 +26,7 @@ function setCookie({ tokenName, token, res }) {
 }
 
 function generateToken(user, secret) {
-  console.log('>>>>>>>>>>>>>>>>>' + user);
+  // console.log('>>>>>>>>>>>>>>>>>' + user);
   // const userForToken = {
   //   fullname: user.name,
   //   email: user.email,
@@ -99,7 +99,7 @@ module.exports = app => {
 
     async login(parent, args, context) {
       // To see what we had put in graphql & delete it in final project
-      console.log(args);
+      // console.log(args);
 
       try {
         const user = await context.pgResource.getUserAndPasswordForVerification(
