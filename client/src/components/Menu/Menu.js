@@ -74,7 +74,7 @@ class MenuAppBar extends React.Component {
               href="/welcome"
             >
               {/* <MenuIcon /> */}
-              <img src={logo} className="App-logo" alt="logo" width="40" />
+              <img src={logo} alt="logo" width="40" />
             </IconButton>
             <div className={classes.grow} />
             {/* {history.location.pathname === '/share' ? (

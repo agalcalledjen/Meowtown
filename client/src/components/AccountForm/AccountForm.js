@@ -84,13 +84,13 @@ class AccountForm extends Component {
       <Fragment>
         <Form
           onSubmit={this.onSubmit}
-          // validate={values => {
-          //   return validate(
-          //     values
-          //     // this.state.selectedTags,
-          //     // this.state.fileSelected
-          //   );
-          // }}
+          validate={values => {
+            return validate(
+              values
+              // this.state.selectedTags,
+              // this.state.fileSelected
+            );
+          }}
           render={({
             handleSubmit,
             submitting,
@@ -119,9 +119,7 @@ class AccountForm extends Component {
                       {/* @TODO: Close Final Form <Field /> */}
                       {meta.touched &&
                         meta.invalid && (
-                          <div className={classes.errorMessage}>
-                            {meta.error}
-                          </div>
+                          <div className={classes.error}>{meta.error}</div>
                         )}
                     </FormControl>
                   )}

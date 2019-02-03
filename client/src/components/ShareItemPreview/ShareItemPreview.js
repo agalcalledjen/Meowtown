@@ -3,6 +3,7 @@ import ItemCard from './../ItemCard/ItemCard';
 import { connect } from 'react-redux';
 
 const ShareItemPreview = ({ shareItemPreview }) => {
+  console.log(shareItemPreview);
   return (
     // <Fragment>
     <ItemCard item={shareItemPreview} />

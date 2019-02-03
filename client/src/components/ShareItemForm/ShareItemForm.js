@@ -130,10 +130,10 @@ class ShareItemForm extends Component {
 
     return (
       <Fragment>
-        <Typography variant="display1" className={classes.headline}>
+        <Typography variant="display2" className={classes.headline}>
           Share. Borrow.
         </Typography>
-        <Typography variant="display1" className={classes.headline}>
+        <Typography variant="display2" className={classes.headline}>
           Prosper.
         </Typography>
         <Mutation mutation={ADD_ITEM_MUTATION}>
@@ -172,7 +172,7 @@ class ShareItemForm extends Component {
                     onSubmit={event =>
                       handleSubmit(event).then(() => {
                         this.fileInput.current.value = '';
-                        this.setState({ fileSelected: false });
+                        // this.setState({ fileSelected: false });
                         // resetItemImg();
 
                         form.reset();

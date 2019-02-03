@@ -20,12 +20,11 @@ const styles = theme => ({
       width: '400px'
     }
   },
-  errorMessage: {
-    color: 'firebrick'
-  },
   error: {
+    fontFamily: 'Roboto, sans-serif',
     color: 'red',
-    fontSize: '1rem'
+    fontSize: '1rem',
+    marginTop: theme.spacing.unit / 2
   }
 });
 
