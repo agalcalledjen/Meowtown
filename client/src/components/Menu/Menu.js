@@ -7,7 +7,8 @@ import IconButton from '@material-ui/core/IconButton';
 import UserAcct from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import logo from '../../images/boomtown.svg';
+// import logo from '../../images/boomtown.svg';
+import logo from '../../images/pets.svg';
 
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';

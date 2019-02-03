@@ -53,16 +53,16 @@ const ItemCard = ({ classes, item }) => {
             </Avatar>
             <Grid item>
               <Typography
-                variant="body2"
+                variant="body1"
                 gutterBottom
-                className={classes.ownerName}
+                // className={classes.ownerInfo}
               >
                 {item.itemowner.fullname}
               </Typography>
               <Typography
-                variant="body1"
+                variant="caption"
                 gutterBottom
-                className={classes.ownerName}
+                // className={classes.ownerInfo}
               >
                 {daysCounted > 1
                   ? daysCounted + ' days ago'
@@ -72,14 +72,14 @@ const ItemCard = ({ classes, item }) => {
           </Grid>
           <Typography
             component="h2"
-            variant="display1"
+            variant="headline"
             gutterBottom
             className={classes.title}
           >
             {item.title}
           </Typography>
           <Typography
-            variant="body1"
+            variant="caption"
             gutterBottom
             // key={tag.id}
             className={classes.capitalize}

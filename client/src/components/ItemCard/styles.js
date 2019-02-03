@@ -4,7 +4,6 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 1.5
   },
   media: {
-    // height: 270
     height: 0,
     paddingTop: '56.25%'
   },
@@ -12,11 +11,7 @@ const styles = theme => ({
     color: theme.palette.text.primary
   },
   capitalize: {
-    textTransform: 'capitalize',
-    color: theme.palette.text.secondary
-  },
-  button: {
-    fontSize: 16
+    textTransform: 'capitalize'
   },
   avatar: {
     marginRight: theme.spacing.unit * 2,
@@ -31,10 +26,10 @@ const styles = theme => ({
   },
   owner: {
     marginBottom: theme.spacing.unit * 6
-  },
-  ownerName: {
-    width: '100%'
   }
+  // ownerInfo: {
+  //   width: '100%'
+  // }
 });
 
 export default styles;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Home from './Home';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
