@@ -14,15 +14,23 @@ const styles = theme => ({
   },
   wrapper: {
     margin: theme.spacing.unit,
-    position: 'relative'
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   progress: {
     // margin: theme.spacing.unit * 2,
     // color: green[500],
     position: 'absolute',
-    top: -6,
-    left: -6,
+    top: -16,
+    // left: -6,
+    // top: 0,
+    // left: 0,
     zIndex: 1
+  },
+  catQuote: {
+    padding: theme.spacing.unit * 6
   }
 });
 

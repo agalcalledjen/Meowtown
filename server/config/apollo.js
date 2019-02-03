@@ -38,7 +38,7 @@ module.exports = ({ app, pgResource }) => {
       const tokenName = app.get('JWT_COOKIE_NAME');
       const token = req ? req.cookies[tokenName] : undefined;
       // remove this console.log
-      // console.log(token);
+      console.log('CONTEXT>>>>>>' + req);
       // -------------------------------
 
       return {

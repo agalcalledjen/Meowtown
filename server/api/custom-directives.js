@@ -76,16 +76,18 @@ class AuthDirective extends SchemaDirectiveVisitor {
          * to your schema types.
          *
          */
-        // console.log('CUSTOM-DIRECTIVES ' + context.token);
+        // console.log('CUSTOM-DIRECTIVES ' + context.req);
 
-        if (context.token) {
-          // console.log('CUSTOM-DIRECTIVES WORKING??');
-          return resolve.apply(this, [parent, args, context, info]);
-        }
+        // if (context.token) {
+        //   // console.log('CUSTOM-DIRECTIVES WORKING??');
+        //   return resolve.apply(this, [parent, args, context, info]);
+        // }
 
         if (!context.token) {
           throw new ForbiddenError('Affirmative. Forbidden');
         }
+
+        return resolve.apply(this, [parent, args, context, info]);
       };
     });
   }
