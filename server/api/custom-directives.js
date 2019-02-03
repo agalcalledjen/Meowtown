@@ -19,11 +19,20 @@ class AuthDirective extends SchemaDirectiveVisitor {
     objectType._authFieldsWrapped = true;
 
     const fields = objectType.getFields();
+    // console.log('FIELDS ' + { fields });
 
     Object.keys(fields).forEach(fieldName => {
       const field = fields[fieldName];
+      // console.log('FIELD ' + { field });
       const { resolve = defaultFieldResolver } = field;
-      field.resolve = async function(parent, args, context, info) {
+      console.log({ defaultFieldResolver });
+      field.resolve = async function(
+        parent,
+        args,
+        context,
+        // { pgResource, token },
+        info
+      ) {
         /**
          * @TODO: Authentication - Server
          *
@@ -67,15 +76,16 @@ class AuthDirective extends SchemaDirectiveVisitor {
          * to your schema types.
          *
          */
-        console.log(context);
+        // console.log('CUSTOM-DIRECTIVES ' + context.token);
 
-        if (context.jwt) {
+        if (context.token) {
+          // console.log('CUSTOM-DIRECTIVES WORKING??');
           return resolve.apply(this, [parent, args, context, info]);
-        } else {
-          throw ForbiddenError('You must have authorization for access.');
         }
 
-        // return resolve.apply(this, [parent, args, context, info]);
+        if (!context.token) {
+          throw new ForbiddenError('Affirmative. Forbidden');
+        }
       };
     });
   }

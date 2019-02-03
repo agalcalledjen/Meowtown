@@ -25,10 +25,10 @@ module.exports = ({ app, pgResource }) => {
   // @TODO: Refactor to use 'makeExecutableSchema' to wire up your schema to your resolvers:
   const schema = makeExecutableSchema({
     typeDefs,
-    resolvers
-    // schemaDirectives: {
-    //   auth: AuthDirective
-    // }
+    resolvers,
+    schemaDirectives: {
+      auth: AuthDirective
+    }
   });
   // -------------------------------
 
