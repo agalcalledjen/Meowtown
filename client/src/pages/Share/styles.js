@@ -1,9 +1,9 @@
 const styles = theme => ({
   container: {
     flexGrow: 1,
-    marginTop: theme.spacing.unit / 8,
-    padding: theme.spacing.unit * 12,
-    // paddingTop: 0,
+    marginTop: theme.spacing.unit / 5,
+    padding: theme.spacing.unit * 3,
+    paddingTop: theme.spacing.unit * 12,
     // paddingBottom: theme.spacing.unit * 6,
     background: 'white',
     height: '100vh'
@@ -16,7 +16,7 @@ const styles = theme => ({
   //   justifyContent: 'center'
   // }
   // control: {
-  //   margin: theme.spacing.unit * 2
+  //   flexGrow: 1
   // }
 });
 
