@@ -25,7 +25,7 @@ class AuthDirective extends SchemaDirectiveVisitor {
       const field = fields[fieldName];
       // console.log('FIELD ' + { field });
       const { resolve = defaultFieldResolver } = field;
-      console.log({ defaultFieldResolver });
+      // console.log({ defaultFieldResolver });
       field.resolve = async function(
         parent,
         args,
@@ -76,18 +76,27 @@ class AuthDirective extends SchemaDirectiveVisitor {
          * to your schema types.
          *
          */
-        // console.log('CUSTOM-DIRECTIVES ' + context.req);
+        // console.log('CUSTOM-DIRECTIVES ' + context.req.body.operationName);
+        // console.log('CUSTOM-DIRECTIVES ' + info);
 
         // if (context.token) {
         //   // console.log('CUSTOM-DIRECTIVES WORKING??');
         //   return resolve.apply(this, [parent, args, context, info]);
         // }
 
-        if (!context.token) {
+        // if (!context.token ) {
+        //   throw new ForbiddenError('Affirmative. Forbidden');
+        // }
+
+        if (
+          context.token ||
+          context.req.body.operationName === 'signup' ||
+          context.req.body.operationName === 'login'
+        ) {
+          return resolve.apply(this, [parent, args, context, info]);
+        } else {
           throw new ForbiddenError('Affirmative. Forbidden');
         }
-
-        return resolve.apply(this, [parent, args, context, info]);
       };
     });
   }
