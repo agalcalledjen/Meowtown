@@ -87,8 +87,8 @@ module.exports = gql`
   }
 
   type Mutation {
-    # addItem(item: NewItemInput!, image: Upload): Item
-    addItem(item: NewItemInput!): Item
+    addItem(item: NewItemInput!, image: Upload): Item
+    # addItem(item: NewItemInput!): Item
     signup(user: SignupInput!): ID!
     login(user: LoginInput!): ID!
     logout: Boolean!

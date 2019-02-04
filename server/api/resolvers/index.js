@@ -203,7 +203,8 @@ module.exports = app => {
         // }
         // ------ null is alright for the borrowerid since it is already in there
       }
-      /* async imageurl({ imageurl, imageid, mimetype, data }) {
+      /* ,
+      async imageurl({ imageurl, imageid, mimetype, data }) {
         if (imageurl) return imageurl;
         if (imageid) {
           return `data:${mimetype};base64, ${data}`;

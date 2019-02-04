@@ -77,6 +77,7 @@ class AuthDirective extends SchemaDirectiveVisitor {
          *
          */
         // console.log('CUSTOM-DIRECTIVES ' + context.req.body.operationName);
+        // user
         // console.log('CUSTOM-DIRECTIVES ' + info);
 
         // if (context.token) {

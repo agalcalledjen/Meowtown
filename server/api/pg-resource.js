@@ -34,7 +34,7 @@ module.exports = postgres => {
         const user = await postgres.query(newUserInsert);
         return user.rows[0];
       } catch (e) {
-        // console.log(e);
+        // console.log('APOLLO ERROR:' + e);
         switch (true) {
           case /users_name_key/.test(e.message):
             throw 'An account with this username already exists.';
@@ -197,7 +197,8 @@ module.exports = postgres => {
         postgres.connect((err, client, done) => {
           try {
             // Begin postgres transaction
-            // ORIGINAL: client.query('BEGIN', err => {
+            // ORIGINAL:
+            // client.query('BEGIN', err => {
             client.query('BEGIN', async err => {
               // Convert image (file stream) to Base64
               /* const imageStream = image.stream.pipe(strs('base64'));
@@ -205,9 +206,9 @@ module.exports = postgres => {
               let base64Str = '';
               imageStream.on('data', data => {
                 base64Str += data;
-              }); */
+              });
 
-              // imageStream.on('end', async () => {
+              imageStream.on('end', async () => { */
               // Image has been converted, begin saving things
               const { title, description, tags } = item;
 
@@ -240,12 +241,12 @@ module.exports = postgres => {
                 }; */
 
               // Upload image
-              /* const uploadedImage = await client.query(imageUploadQuery);
+              /*  const uploadedImage = await client.query(imageUploadQuery);
                 const imageid = uploadedImage.rows[0].id; */
 
               // Generate image relation query
               // @TODO
-              /*  const imageRelationQuery = {
+              /* const imageRelationQuery = {
                   text:
                     'INSERT INTO items(title, description, tags) VALUES($1, $2, $3)',
                   values: [title, description, tags]
@@ -254,6 +255,9 @@ module.exports = postgres => {
 
               // Insert image
               // @TODO
+              /* const insertImage = await postgres.query(
+                  imageRelationshipsQuery
+                ); */
               // -------------------------------
 
               // Generate tag relationships query (use the'tagsQueryString' helper function provided)

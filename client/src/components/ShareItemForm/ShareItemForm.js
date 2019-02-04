@@ -150,6 +150,10 @@ class ShareItemForm extends Component {
                           title: ''
                         }))
                       }
+                      // ,
+                      // image: {
+                      //   image: this.fileInput
+                      // }
                     }
                   });
                 }}
