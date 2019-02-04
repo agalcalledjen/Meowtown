@@ -27,7 +27,6 @@ const FullScreenLoader = ({ classes }) => {
           “You can not look at a sleeping cat and feel tense.” – Jane Pauley
         </Typography>
       </Grid>
-      {/* <Grid item /> */}
     </Grid>
   );
 };
@@ -37,5 +36,3 @@ FullScreenLoader.propTypes = {
 };
 
 export default withStyles(styles)(FullScreenLoader);
-
-// TODO: return an image of cat img spinning for the loading thing

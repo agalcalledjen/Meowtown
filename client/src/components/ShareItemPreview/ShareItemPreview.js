@@ -3,22 +3,11 @@ import ItemCard from './../ItemCard/ItemCard';
 import { connect } from 'react-redux';
 
 const ShareItemPreview = ({ shareItemPreview }) => {
-  // console.log(shareItemPreview);
-  return (
-    // <Fragment>
-    <ItemCard item={shareItemPreview} />
-    // </Fragment>
-  );
+  return <ItemCard item={shareItemPreview} />;
 };
 
-// export default ShareItemPreview;
-
 const mapStateToProps = state => {
-  // This is the reducer we set up in Exercise 3
-  // implicit return
-  // shareItemPreview: state.shareItemPreview
   return { ...state };
 };
 
-// connect is a fx that takes in two arguments, mapStateToProps and ShareItemPreview
 export default connect(mapStateToProps)(ShareItemPreview);

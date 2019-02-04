@@ -10,8 +10,6 @@ import Avatar from '@material-ui/core/Avatar';
 import ItemsGrid from '../../components/ItemsGrid';
 
 const Profile = ({ classes, user }) => {
-  // const profile = user;
-  // console.log(profile);
   const sharedItems = user.items.length;
 
   return (
@@ -31,21 +29,10 @@ const Profile = ({ classes, user }) => {
                 {user.fullname}
               </Typography>
             </Grid>
-            {/* <Typography component="h2" variant="display1" gutterBottom>
-              <Gravatar
-                email={user.email}
-                default="retro"
-                className={classes.gravatar}
-              />
-              {user.fullname}
-            </Typography> */}
             <Typography component="h2" variant="headline" gutterBottom>
-              {/* <Typography variant="title" gutterBottom> */}
-              {/* <span> */}
               {sharedItems > 1 || sharedItems === 0
                 ? sharedItems + ' Items '
                 : sharedItems + ' Item '}
-              {/* </span>{' '} */}
               shared 0 Items borrowed
             </Typography>
             <Typography variant="body1" gutterBottom>

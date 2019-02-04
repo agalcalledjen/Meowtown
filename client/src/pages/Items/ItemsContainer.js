@@ -13,7 +13,7 @@ const ItemsContainer = ({ classes }) => {
         {({ loading, error, data }) => {
           if (loading) return <FullScreenLoader inverted />;
           if (error) return <p>{`Error! ${error.message}`}</p>;
-          // console.log(data);
+
           return <Items classes={classes} items={data.items} />;
         }}
       </Query>
@@ -22,5 +22,3 @@ const ItemsContainer = ({ classes }) => {
 };
 
 export default withStyles(styles)(ItemsContainer);
-
-// this grabs the data and creates props that we can use to display the data

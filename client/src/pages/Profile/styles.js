@@ -10,8 +10,6 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing.unit * 6
-    // textAlign: 'center',
-    // color: theme.palette.text.secondary
   },
   userName: {
     marginBottom: theme.spacing.unit * 2
@@ -20,7 +18,6 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
     width: 50,
     height: 50
-    // borderRadius: 50
   },
   gravatar: {
     borderRadius: 50,

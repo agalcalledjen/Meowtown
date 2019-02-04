@@ -4,8 +4,6 @@ const styles = theme => ({
   },
   root: {
     flexGrow: 1
-    // marginBottom: theme.spacing.unit * 12
-    // marginBottom: theme.spacing.unit * 2
   },
   grow: {
     flexGrow: 1
@@ -14,18 +12,12 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20
   },
-  userButton: {
-    // marginLeft: 20,
-    // marginRight: 12
-  },
+
   shareButton: {
     margin: theme.spacing.unit,
     borderRadius: 50,
     boxShadow: 'none'
   }
-  // icon: {
-  //   margin: theme.spacing.unit
-  // }
 });
 
 export default styles;

@@ -15,16 +15,9 @@ export default createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
-        // color: 'white',
-        // marginTop: theme.spacing.unit * 3,
-        // fontSize: '2rem',
-        // textTransform: 'uppercase',
         fontWeight: 400,
         paddingRight: '1.5rem',
-        paddingLeft: '1.5rem',
-        '&:hover': {
-          // backgroundColor: '#f9a825'
-        }
+        paddingLeft: '1.5rem'
       }
     }
   }

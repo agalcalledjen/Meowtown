@@ -7,7 +7,6 @@ import IconButton from '@material-ui/core/IconButton';
 import UserAcct from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-// import logo from '../../images/boomtown.svg';
 import logo from '../../images/pets.svg';
 
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -19,10 +18,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
 import { Link, withRouter } from 'react-router-dom';
 
-import {
-  LOGOUT_MUTATION,
-  VIEWER_QUERY // this asks for the cookie
-} from '../../apollo/queries';
+import { LOGOUT_MUTATION, VIEWER_QUERY } from '../../apollo/queries';
 import { graphql, compose } from 'react-apollo';
 import Slide from '@material-ui/core/Slide';
 
@@ -56,12 +52,6 @@ class MenuAppBar extends Component {
     const { shareBtn } = this.state;
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    // console.log(history);
-
-    // const sharePgBg =
-    //   location.pathname === '/share'
-    //     ? { background: 'white' }
-    //     : { background: '#212121' };
 
     return (
       <div className={classes.root}>
@@ -73,39 +63,20 @@ class MenuAppBar extends Component {
               aria-label="Menu"
               href="/welcome"
             >
-              {/* <MenuIcon /> */}
               <img src={logo} alt="logo" width="40" />
             </IconButton>
             <div className={classes.grow} />
-            {/* {history.location.pathname === '/share' ? (
-              <Fragment />
-            ) : (
-              <Button href="/share" className={classes.shareButton}>
-                <AddIcon className={classes.margin} />
-                SHARE SOMETHING
-              </Button>
-            )} */}
             {history.location.pathname === '/share' ? (
               <Fragment />
             ) : (
               <Slide direction="left" in={shareBtn} mountOnEnter unmountOnExit>
-                <Button
-                  href="/share"
-                  className={classes.shareButton}
-                  // onClick={() => {
-                  //   return false;
-                  // }}
-                >
+                <Button href="/share" className={classes.shareButton}>
                   <AddIcon className={classes.margin} />
                   SHARE SOMETHING
                 </Button>
               </Slide>
             )}
 
-            {/* <Button href="/share" className={classes.shareButton}>
-              <AddIcon className={classes.margin} />
-              SHARE SOMETHING
-            </Button> */}
             {auth && (
               <div>
                 <IconButton
@@ -148,7 +119,6 @@ class MenuAppBar extends Component {
                   </MenuItem>
                   <MenuItem
                     className={classes.menuItem}
-                    // onClick={this.handleClose}
                     onClick={this.props.logoutMutation}
                     component={Link}
                     to="/welcome"
@@ -175,8 +145,6 @@ class MenuAppBar extends Component {
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
-// export default withStyles(styles)(MenuAppBar);
 
 const refetchQueries = [
   {

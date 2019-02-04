@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
 const Items = ({ classes, items }) => {
-  // const { items } = data;
   return (
     <div className={classes.container}>
       <ItemsGrid items={items} />

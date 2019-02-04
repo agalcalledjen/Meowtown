@@ -14,17 +14,6 @@ import Grid from '@material-ui/core/Grid';
 import { Link, withRouter } from 'react-router-dom';
 import { ViewerContext } from '../../context/ViewerProvider';
 
-// const daysCreated = ({ item }) => {
-//   const dateNow = Date.now();
-//   const minutes = 1000 * 60;
-//   const hours = minutes * 60;
-//   const days = hours * 24;
-//   const years = days * 365;
-//   const daysCounted = Math.round((dateNow - item.created) / days);
-
-//   return daysCounted;
-// };
-
 const ItemCard = ({ classes, item, history }) => {
   const dateNow = Date.now();
   const minutes = 1000 * 60;
@@ -61,29 +50,14 @@ const ItemCard = ({ classes, item, history }) => {
                       className={classes.gravatar}
                     />
                   )}
-                  {/* <Gravatar
-                // email={item.itemowner.email}
-                // email={viewer.email}
-                email={avatarEmail}
-                default="retro"
-                className={classes.gravatar}
-              /> */}
                 </Avatar>
                 <Grid item>
-                  <Typography
-                    variant="body1"
-                    gutterBottom
-                    // className={classes.ownerInfo}
-                  >
+                  <Typography variant="body1" gutterBottom>
                     {history.location.pathname === '/share'
                       ? viewer.fullname
                       : item.itemowner.fullname}
                   </Typography>
-                  <Typography
-                    variant="caption"
-                    gutterBottom
-                    // className={classes.ownerInfo}
-                  >
+                  <Typography variant="caption" gutterBottom>
                     {daysCounted > 1
                       ? daysCounted + ' days ago'
                       : daysCounted + ' day ago'}
@@ -101,13 +75,11 @@ const ItemCard = ({ classes, item, history }) => {
               <Typography
                 variant="caption"
                 gutterBottom
-                // key={tag.id}
                 className={classes.capitalize}
               >
                 {item.tags.map(tag => tag.title).join(', ')}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                {/* <Typography variant="headline" gutterBottom> */}
                 {item.description}
               </Typography>
             </CardContent>
@@ -134,12 +106,12 @@ ItemCard.defaultProps = {
     id: 'X',
     imageurl:
       'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-sgt-pepper-3-75354b0a-c2dd-4c8c-a5a1-3e01f7316e63.jpg',
-    // itemowner: {
-    //   bio: 'In the sky with diamonds.',
-    //   email: 'lucy@beatles.com',
-    //   fullname: 'Lucy',
-    //   id: 'X'
-    // },
+    itemowner: {
+      bio: 'In the sky with diamonds.',
+      email: 'lucy@beatles.com',
+      fullname: 'Lucy',
+      id: 'X'
+    },
     tags: [
       {
         id: 'X',
@@ -151,6 +123,3 @@ ItemCard.defaultProps = {
 };
 
 export default withRouter(withStyles(styles)(ItemCard));
-
-// put the mapping over here and grab the itemcard from components
-// itemcard is a component since it is useable

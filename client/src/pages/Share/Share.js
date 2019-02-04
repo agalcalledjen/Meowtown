@@ -22,7 +22,6 @@ const Share = ({ classes, tags }) => {
   return (
     <Grid container className={classes.container} spacing={40} justify="center">
       <Grid item sm={6} md={4} className={classes.control}>
-        {/* this not appear in mobile view */}
         <Hidden only="xs">
           <ShareItemPreview />
         </Hidden>

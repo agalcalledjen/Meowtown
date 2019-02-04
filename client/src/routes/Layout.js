@@ -10,7 +10,6 @@ import FullScreenLoader from '../components/FullScreenLoader';
 
 export default () => (
   <Fragment>
-    {/* @TODO: Add your menu component here */}
     <ViewerContext.Consumer>
       {({ viewer, loading }) => {
         if (loading) return <FullScreenLoader inverted />;
@@ -36,14 +35,6 @@ export default () => (
           );
         }
       }}
-      {/**
-       * @TODO: Define routes here for: /items, /profile, /profile/:userid, and /share
-       *
-       * Provide a wildcard redirect to /items for any undefined route using <Redirect />.
-       *
-       * Later, we'll add logic to send users to one set of routes if they're logged in,
-       * or only view the /welcome page if they are not.
-       */}
     </ViewerContext.Consumer>
   </Fragment>
 );

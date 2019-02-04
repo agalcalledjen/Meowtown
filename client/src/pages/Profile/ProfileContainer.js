@@ -8,11 +8,7 @@ import { ALL_USER_ITEMS_QUERY } from '../../apollo/queries';
 import { ViewerContext } from '../../context/ViewerProvider';
 
 const ProfileContainer = ({ classes, match }) => {
-  // profile/userid here
-  // const id = match.params.userid || '1';
   const id = match.params.userid;
-  // To view profile of itemowner
-  // console.log(match.params);
 
   return (
     <ViewerContext.Consumer>

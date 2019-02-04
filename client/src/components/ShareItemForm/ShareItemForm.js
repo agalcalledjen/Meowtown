@@ -18,7 +18,6 @@ import {
   resetItemImg
 } from '../../redux/modules/ShareItem';
 import { connect } from 'react-redux';
-
 import { validate } from './helpers/validation';
 import { Mutation } from 'react-apollo';
 import { ADD_ITEM_MUTATION } from '../../apollo/queries';
@@ -29,7 +28,6 @@ class ShareItemForm extends Component {
     this.fileInput = React.createRef();
 
     this.state = {
-      // checked: [],
       fileSelected: false,
       done: false,
       selectedTags: []
@@ -50,9 +48,6 @@ class ShareItemForm extends Component {
     });
   }
 
-  // looking at all the tags and filtering out for the selected tags only
-  // checking index of selected tag and the tag
-  // indexOf, use id since it is more of a unique identifier than t.title
   applyTags(tags) {
     return (
       tags &&
@@ -92,41 +87,8 @@ class ShareItemForm extends Component {
     this.setState({ fileSelected: this.fileInput.current.files[0] });
   };
 
-  // is this needed?
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked
-    });
-  };
-
-  // onSubmit = values => {
-  //   console.log(value);
-  //   addItemMutation({
-  //     variables: {
-  //       item: {
-  //         ...values,
-  //         tags: this.state.selectedTags.map(tag => ({
-  //           id: tag,
-  //           title: ''
-  //         }))
-  //       }
-  //     }
-  //   });
-  // };
-
   render() {
     const { classes, tags, updateItem, resetItem, resetItemImg } = this.props;
-    // console.log(this.props);
 
     return (
       <Fragment>
@@ -150,10 +112,6 @@ class ShareItemForm extends Component {
                           title: ''
                         }))
                       }
-                      // ,
-                      // image: {
-                      //   image: this.fileInput
-                      // }
                     }
                   });
                 }}
@@ -176,8 +134,8 @@ class ShareItemForm extends Component {
                     onSubmit={event =>
                       handleSubmit(event).then(() => {
                         this.fileInput.current.value = '';
-                        // this.setState({ fileSelected: false });
-                        // resetItemImg();
+                        this.setState({ fileSelected: false });
+                        resetItemImg();
 
                         form.reset();
                         resetItem();
@@ -186,18 +144,16 @@ class ShareItemForm extends Component {
                       })
                     }
                   >
-                    {/* Insert FormSpy */}
                     <FormSpy
                       subscription={{ values: true }}
                       component={({ values }) => {
                         if (values) {
-                          console.log('VALUES', values);
                           this.dispatchUpdate(values, tags, updateItem);
                         }
                         return '';
                       }}
                     />
-                    {/* write a tetrany stmt to show certain btns if a file is selected */}
+
                     {!this.state.fileSelected ? (
                       <Button
                         variant="contained"
@@ -238,19 +194,13 @@ class ShareItemForm extends Component {
                       render={({ input, meta }) => (
                         <FormControl className={classes.field}>
                           <InputLabel
-                            // htmlFor="custom-css-standard-input"
                             classes={{
                               root: classes.cssLabel
-                              // focused: classes.cssFocused
                             }}
                           />
                           <TextField
                             id="itemNameInput"
                             className={classes.input}
-                            // classes={{
-                            //   underline: classes.cssUnderline
-                            // }}
-                            // inputProps={input}
                             label="Name your item"
                             type="text"
                             {...input}
@@ -271,11 +221,8 @@ class ShareItemForm extends Component {
                             className={classes.input}
                             multiline
                             rows="4"
-                            // defaultValue="Description"
                             placeholder="Description"
-                            // margin="normal"
                             inputProps={input}
-                            // maxLength="5"
                           />
                           {meta.touched &&
                             meta.invalid && (
@@ -327,18 +274,9 @@ class ShareItemForm extends Component {
                     <Button
                       variant="contained"
                       color="primary"
-                      // disabled
                       className={classes.shareButton}
                       disabled={submitting || pristine || invalid}
                       type="submit"
-                      // onClick={() => {
-                      //   this.fileInput.current.value = '';
-                      //   this.setState({ fileSelected: false });
-                      //   form.reset();
-                      //   resetItem();
-                      //   this.setState({ selectedTags: [] });
-                      //   return false;
-                      // }}
                     >
                       Share
                     </Button>
@@ -358,16 +296,10 @@ ShareItemForm.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  /*  This function will provide a prop called 
-    'updateNewItem' to our component. */
-  // we're creating a key called updateItem and the value is itself
-  // then we will use this prop
-  // this fx will be invoked when we start typing aka being dispatched
   updateItem(item) {
-    // Inside this function we can dispatch data to our reducer.
     dispatch(updateItem(item));
   },
-  // ... other methods
+
   resetItem() {
     dispatch(resetItem());
   },
@@ -376,9 +308,6 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-// export default withStyles(styles)(ShareItemForm);
-// since we don't have mapStateToProps, it will be null
-// it is part of the first argument
 export default connect(
   null,
   mapDispatchToProps
