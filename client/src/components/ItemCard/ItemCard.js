@@ -12,6 +12,7 @@ import Gravatar from 'react-gravatar';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import { Link, withRouter } from 'react-router-dom';
+import { ViewerContext } from '../../context/ViewerProvider';
 
 // const daysCreated = ({ item }) => {
 //   const dateNow = Date.now();
@@ -24,7 +25,7 @@ import { Link, withRouter } from 'react-router-dom';
 //   return daysCounted;
 // };
 
-const ItemCard = ({ classes, item }) => {
+const ItemCard = ({ classes, item, history }) => {
   const dateNow = Date.now();
   const minutes = 1000 * 60;
   const hours = minutes * 60;
@@ -33,71 +34,92 @@ const ItemCard = ({ classes, item }) => {
   const daysCounted = Math.round((dateNow - item.created) / days);
 
   return (
-    <Card className={classes.card}>
-      <Fragment>
-        <CardMedia
-          className={classes.media}
-          image={item.imageurl}
-          title={item.title}
-          component={Link}
-          to={`/profile/${item.itemowner.id}`}
-        />
-        <CardContent>
-          <Grid container className={classes.owner} alignItems="center">
-            <Avatar className={classes.avatar}>
-              <Gravatar
-                email={item.itemowner.email}
+    <ViewerContext.Consumer>
+      {({ viewer }) => (
+        <Card className={classes.card}>
+          <Fragment>
+            <CardMedia
+              className={classes.media}
+              image={item.imageurl}
+              title={item.title}
+              component={Link}
+              to={`/profile/${item.itemowner.id}`}
+            />
+            <CardContent>
+              <Grid container className={classes.owner} alignItems="center">
+                <Avatar className={classes.avatar}>
+                  {history.location.pathname === '/share' ? (
+                    <Gravatar
+                      email={viewer.email}
+                      default="retro"
+                      className={classes.gravatar}
+                    />
+                  ) : (
+                    <Gravatar
+                      email={item.itemowner.email}
+                      default="retro"
+                      className={classes.gravatar}
+                    />
+                  )}
+                  {/* <Gravatar
+                // email={item.itemowner.email}
+                // email={viewer.email}
+                email={avatarEmail}
                 default="retro"
                 className={classes.gravatar}
-              />
-            </Avatar>
-            <Grid item>
+              /> */}
+                </Avatar>
+                <Grid item>
+                  <Typography
+                    variant="body1"
+                    gutterBottom
+                    // className={classes.ownerInfo}
+                  >
+                    {history.location.pathname === '/share'
+                      ? viewer.fullname
+                      : item.itemowner.fullname}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    gutterBottom
+                    // className={classes.ownerInfo}
+                  >
+                    {daysCounted > 1
+                      ? daysCounted + ' days ago'
+                      : daysCounted + ' day ago'}
+                  </Typography>
+                </Grid>
+              </Grid>
               <Typography
-                variant="body1"
+                component="h2"
+                variant="headline"
                 gutterBottom
-                // className={classes.ownerInfo}
+                className={classes.title}
               >
-                {item.itemowner.fullname}
+                {item.title}
               </Typography>
               <Typography
                 variant="caption"
                 gutterBottom
-                // className={classes.ownerInfo}
+                // key={tag.id}
+                className={classes.capitalize}
               >
-                {daysCounted > 1
-                  ? daysCounted + ' days ago'
-                  : daysCounted + ' day ago'}
+                {item.tags.map(tag => tag.title).join(', ')}
               </Typography>
-            </Grid>
-          </Grid>
-          <Typography
-            component="h2"
-            variant="headline"
-            gutterBottom
-            className={classes.title}
-          >
-            {item.title}
-          </Typography>
-          <Typography
-            variant="caption"
-            gutterBottom
-            // key={tag.id}
-            className={classes.capitalize}
-          >
-            {item.tags.map(tag => tag.title).join(', ')}
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            {/* <Typography variant="headline" gutterBottom> */}
-            {item.description}
-          </Typography>
-        </CardContent>
-      </Fragment>
-      <CardActions>
-        <Button variant="outlined" className={classes.button}>
-          Borrow
-        </Button>
-      </CardActions>
-    </Card>
+              <Typography variant="body1" gutterBottom>
+                {/* <Typography variant="headline" gutterBottom> */}
+                {item.description}
+              </Typography>
+            </CardContent>
+          </Fragment>
+          <CardActions>
+            <Button variant="outlined" className={classes.button}>
+              Borrow
+            </Button>
+          </CardActions>
+        </Card>
+      )}
+    </ViewerContext.Consumer>
   );
 };
 
@@ -112,12 +134,12 @@ ItemCard.defaultProps = {
     id: 'X',
     imageurl:
       'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-sgt-pepper-3-75354b0a-c2dd-4c8c-a5a1-3e01f7316e63.jpg',
-    itemowner: {
-      bio: 'In the sky with diamonds.',
-      email: 'lucy@beatles.com',
-      fullname: 'Lucy',
-      id: 'X'
-    },
+    // itemowner: {
+    //   bio: 'In the sky with diamonds.',
+    //   email: 'lucy@beatles.com',
+    //   fullname: 'Lucy',
+    //   id: 'X'
+    // },
     tags: [
       {
         id: 'X',

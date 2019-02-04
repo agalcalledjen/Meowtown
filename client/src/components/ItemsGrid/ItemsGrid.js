@@ -11,7 +11,7 @@ const ItemsGrid = ({ classes, items }) => {
       container
       className={classes.itemsRoot}
       spacing={24}
-      justify="space-between"
+      justify="flex-start"
     >
       {items.map(item => (
         <Grid

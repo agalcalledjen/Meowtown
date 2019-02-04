@@ -6,8 +6,9 @@ import FullScreenLoader from '../../components/FullScreenLoader';
 import { Query } from 'react-apollo';
 import { ALL_TAGS_QUERY } from '../../apollo/queries';
 
-const ShareContainer = ({ classes }) => {
+const ShareContainer = ({ classes, match }) => {
   // const id = this.props.match.params.userid || '5';
+
   return (
     <Query query={ALL_TAGS_QUERY}>
       {({ loading, error, data }) => {

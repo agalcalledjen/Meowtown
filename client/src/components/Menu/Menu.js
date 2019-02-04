@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -28,7 +28,7 @@ import Slide from '@material-ui/core/Slide';
 
 import styles from './styles';
 
-class MenuAppBar extends React.Component {
+class MenuAppBar extends Component {
   state = {
     auth: true,
     anchorEl: null,

@@ -134,7 +134,7 @@ class ShareItemForm extends Component {
           Share. Borrow.
         </Typography>
         <Typography variant="display2" className={classes.headline}>
-          Prosper.
+          Blep.
         </Typography>
         <Mutation mutation={ADD_ITEM_MUTATION}>
           {addItemMutation => {

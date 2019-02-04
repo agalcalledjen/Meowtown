@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import AccountForm from '../../components/AccountForm';
 
-
 const Home = ({ classes }) => {
   return (
     <Grid
@@ -19,10 +18,10 @@ const Home = ({ classes }) => {
           gutterBottom
           className={classes.subheading}
         >
-          Boomtown
+          Meowtown
         </Typography>
         <Typography variant="display4" className={classes.headline}>
-          Share. Borrow. Prosper.
+          Share. Borrow. Blep.
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12} md={6}>

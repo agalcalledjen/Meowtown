@@ -1,8 +1,9 @@
 const styles = theme => ({
   error: {
+    fontFamily: 'Roboto, sans-serif',
     color: 'red',
-    fontSize: '1rem'
-    // margin: '1rem'
+    fontSize: '1rem',
+    marginTop: '0.5rem'
   },
   headline: {
     fontWeight: 700,

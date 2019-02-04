@@ -9,7 +9,7 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 6
   },
   paper: {
-    padding: theme.spacing.unit * 8
+    padding: theme.spacing.unit * 6
     // textAlign: 'center',
     // color: theme.palette.text.secondary
   },
@@ -18,14 +18,14 @@ const styles = theme => ({
   },
   avatar: {
     marginRight: theme.spacing.unit * 2,
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50
     // borderRadius: 50
   },
   gravatar: {
     borderRadius: 50,
-    width: 80,
-    height: 80
+    width: 50,
+    height: 50
   },
   share: {
     marginLeft: theme.spacing.unit * 12

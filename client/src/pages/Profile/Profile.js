@@ -41,12 +41,12 @@ const Profile = ({ classes, user }) => {
             </Typography> */}
             <Typography component="h2" variant="headline" gutterBottom>
               {/* <Typography variant="title" gutterBottom> */}
-              <span>
-                {sharedItems > 1 || sharedItems === 0
-                  ? sharedItems + ' Items'
-                  : sharedItems + ' Item'}
-              </span>{' '}
-              shared <span>0</span> Items borrowed
+              {/* <span> */}
+              {sharedItems > 1 || sharedItems === 0
+                ? sharedItems + ' Items '
+                : sharedItems + ' Item '}
+              {/* </span>{' '} */}
+              shared 0 Items borrowed
             </Typography>
             <Typography variant="body1" gutterBottom>
               {user.bio}
