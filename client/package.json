@@ -1,7 +1,7 @@
 {
-  "name": "boomtown-client",
+  "name": "meowtown-client",
   "version": "1.0.0",
-  "description": "Client-side code for RED Academy's Boomtown project.",
+  "description": "Client-side code for Meowtown project.",
   "scripts": {
     "build": "react-scripts build && rm -rf ../server/public && mv build ../server/public",
     "precommit": "npm run lint --quiet",
