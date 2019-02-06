@@ -111,7 +111,8 @@ class ShareItemForm extends Component {
                           id: tag,
                           title: ''
                         }))
-                      }
+                      },
+                      image: this.fileInput
                     }
                   });
                 }}

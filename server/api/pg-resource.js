@@ -102,7 +102,7 @@ module.exports = postgres => {
       return tags.rows;
     },
 
-    async saveNewItem({ item, user }) {
+    async saveNewItem({ item, image, user }) {
       return new Promise((resolve, reject) => {
         /**
          * Begin transaction by opening a long-lived connection
@@ -111,32 +111,32 @@ module.exports = postgres => {
         postgres.connect((err, client, done) => {
           try {
             // Begin postgres transaction
-            client.query('BEGIN', async err => {
+            client.query('BEGIN', err => {
               // Convert image (file stream) to Base64
-              /* const imageStream = image.stream.pipe(strs('base64'));
+              const imageStream = image.stream.pipe(strs('base64'));
 
               let base64Str = '';
               imageStream.on('data', data => {
                 base64Str += data;
               });
 
-              imageStream.on('end', async () => { */
-              // Image has been converted, begin saving things
-              const { title, description, tags } = item;
+              imageStream.on('end', async () => {
+                // Image has been converted, begin saving things
+                const { title, description, tags } = item;
 
-              // Generate new Item query
-              // @TODO
-              const newItemQuery = {
-                text:
-                  'INSERT INTO items(title, description, ownerid) VALUES($1, $2, $3) RETURNING *',
+                // Generate new Item query
+                // @TODO
+                const newItemQuery = {
+                  text:
+                    'INSERT INTO items(title, description, ownerid) VALUES($1, $2, $3) RETURNING *',
 
-                values: [title, description, user.id]
-              };
+                  values: [title, description, user.id]
+                };
 
-              // Insert new Item
-              const insertNewItem = await postgres.query(newItemQuery);
+                // Insert new Item
+                const insertNewItem = await postgres.query(newItemQuery);
 
-              /* const imageUploadQuery = {
+                const imageUploadQuery = {
                   text:
                     'INSERT INTO uploads (itemid, filename, mimetype, encoding, data) VALUES ($1, $2, $3, $4, $5) RETURNING *',
                   values: [
@@ -146,54 +146,54 @@ module.exports = postgres => {
                     'base64',
                     base64Str
                   ]
-                }; */
+                };
 
-              // Upload image
-              /*  const uploadedImage = await client.query(imageUploadQuery);
-                const imageid = uploadedImage.rows[0].id; */
+                // Upload image
+                const uploadedImage = await client.query(imageUploadQuery);
+                const imageid = uploadedImage.rows[0].id;
 
-              // Generate image relation query
-              // @TODO
-              /* const imageRelationQuery = {
+                // Generate image relation query
+                // @TODO
+                const imageRelationQuery = {
                   text:
                     'INSERT INTO items(title, description, tags) VALUES($1, $2, $3)',
                   values: [title, description, tags]
-                }; */
-              // -------------------------------
+                };
+                // -------------------------------
 
-              // Insert image
-              // @TODO
-              /* const insertImage = await postgres.query(
+                // Insert image
+                // @TODO
+                const insertImage = await postgres.query(
                   imageRelationshipsQuery
-                ); */
-              // -------------------------------
+                );
+                // -------------------------------
 
-              // Generate tag relationships query
-              const tagRelationshipsQuery = {
-                text: `INSERT INTO itemtags (tagid, itemid) VALUES ${tagsQueryString(
-                  [...tags],
-                  insertNewItem.rows[0].id,
-                  ''
-                )}`,
+                // Generate tag relationships query
+                const tagRelationshipsQuery = {
+                  text: `INSERT INTO itemtags (tagid, itemid) VALUES ${tagsQueryString(
+                    [...tags],
+                    insertNewItem.rows[0].id,
+                    ''
+                  )}`,
 
-                values: tags.map(tag => parseInt(tag.id))
-              };
+                  values: tags.map(tag => parseInt(tag.id))
+                };
 
-              // Insert tags
-              const insertTags = await postgres.query(tagRelationshipsQuery);
+                // Insert tags
+                const insertTags = await postgres.query(tagRelationshipsQuery);
 
-              // Commit the entire transaction!
-              client.query('COMMIT', err => {
-                if (err) {
-                  throw err;
-                }
-                // release the client back to the pool
-                done();
+                // Commit the entire transaction!
+                client.query('COMMIT', err => {
+                  if (err) {
+                    throw err;
+                  }
+                  // release the client back to the pool
+                  done();
 
-                resolve(insertNewItem.rows[0]);
+                  resolve(insertNewItem.rows[0]);
+                });
               });
             });
-            // });
           } catch (e) {
             // Something went wrong
             client.query('ROLLBACK', err => {

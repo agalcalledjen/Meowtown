@@ -146,7 +146,7 @@ describe('GraphQL Schema', () => {
     });
   });
 
-  describe('Resolvers', () => {
+  describe('', () => {
     describe('Query resolvers:', () => {
       const files = glob.sync(
         path.resolve(__dirname, '../resolvers/Query/*.js')
