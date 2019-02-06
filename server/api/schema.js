@@ -70,6 +70,7 @@ module.exports = gql`
   }
 
   type Query {
+    # uploads: [File]
     user(id: ID!): User
     viewer: User
     items(filter: ID): [Item]
@@ -77,7 +78,9 @@ module.exports = gql`
   }
 
   type Mutation {
-    addItem(item: NewItemInput!, image: Upload!): Item
+    addItem(
+      item: NewItemInput! # image: Upload!
+    ): Item
     signup(user: SignupInput!): ID!
     login(user: LoginInput!): ID!
     logout: Boolean!

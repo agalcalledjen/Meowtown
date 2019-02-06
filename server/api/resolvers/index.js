@@ -89,25 +89,26 @@ module.exports = app => {
         } catch (e) {
           throw new ApolloError(e);
         }
-      },
+      }
+      /* ,
       async imageurl({ imageurl, imageid, mimetype, data }) {
         if (imageurl) return imageurl;
         if (imageid) {
           return `data:${mimetype};base64, ${data}`;
         }
-      }
+      } */
     },
 
     Mutation: {
       ...authMutations(app),
 
       async addItem(parent, args, { pgResource, token }, info) {
-        const image = await image;
+        // const image = await image;
         const user = await jwt.decode(token, app.get('JWT_SECRET'));
 
         const newItem = await pgResource.saveNewItem({
           item: args.item,
-          image: args.image,
+          // image: args.image,
           user
         });
         return newItem;
