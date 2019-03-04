@@ -138,7 +138,7 @@ class ShareItemForm extends Component {
                         this.setState({ fileSelected: false });
                         resetItemImg();
 
-                        form.reset();
+                        // Form.reset();
                         resetItem();
                         this.setState({ selectedTags: [] });
                         return false;
