@@ -26,8 +26,9 @@ class AccountForm extends Component {
   }
 
   onSubmit = async values => {
-    console.log('VALUES', values);
+    // must use variables const since graphql requires it
     const variables = { user: values };
+
     try {
       this.state.formToggle
         ? await this.props.loginMutation({ variables })
@@ -35,7 +36,7 @@ class AccountForm extends Component {
     } catch (error) {
       return {
         [FORM_ERROR]: this.state.formToggle
-          ? 'Invalid email and/or password'
+          ? 'Email and/or password are invalid.'
           : 'User account with this email already exists.'
       };
     }
