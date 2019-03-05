@@ -1,14 +1,11 @@
 const styles = theme => ({
   container: {
     paddingTop: theme.spacing.unit * 12,
-    background: theme.palette.secondary.main,
-    height: '100%'
+    background: theme.palette.secondary.main
   },
   root: {
-    flexGrow: 1,
     padding: theme.spacing.unit * 12,
-    paddingTop: 0,
-    paddingBottom: theme.spacing.unit * 6
+    paddingTop: 0
   },
   paper: {
     padding: theme.spacing.unit * 6

@@ -292,7 +292,11 @@ class ShareItemForm extends Component {
 }
 
 ShareItemForm.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string.isRequired)),
+  updateItem: PropTypes.func.isRequired,
+  resetItem: PropTypes.func.isRequired,
+  resetItemImg: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = dispatch => ({

@@ -28,7 +28,8 @@ const ProfileContainer = ({ classes, match }) => {
 };
 
 ProfileContainer.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ProfileContainer);

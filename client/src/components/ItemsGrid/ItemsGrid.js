@@ -7,12 +7,7 @@ import styles from './styles';
 
 const ItemsGrid = ({ classes, items }) => {
   return (
-    <Grid
-      container
-      className={classes.itemsRoot}
-      spacing={24}
-      justify="flex-start"
-    >
+    <Grid container className={classes.itemsRoot} justify="flex-start">
       {items.map(item => (
         <Grid
           item
@@ -30,7 +25,16 @@ const ItemsGrid = ({ classes, items }) => {
 };
 
 ItemsGrid.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  item: PropTypes.shape({
+    borrower: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    imageurl: PropTypes.string.isRequired,
+    itemowner: PropTypes.objectOf(PropTypes.string.isRequired),
+    tags: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string.isRequired)),
+    title: PropTypes.string.isRequired
+  })
 };
 
 export default withStyles(styles)(ItemsGrid);

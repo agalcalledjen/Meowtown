@@ -1,7 +1,7 @@
 const styles = theme => ({
   itemsRoot: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 12,
+    padding: theme.spacing.unit * 10,
     paddingTop: 0,
     margin: 0
   },

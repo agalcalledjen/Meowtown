@@ -8,16 +8,13 @@ import UserAcct from '@material-ui/icons/MoreVert';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import logo from '../../images/pets.svg';
-
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import SignoutIcon from '@material-ui/icons/PowerSettingsNew';
-
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/AddCircle';
 import { Link, withRouter } from 'react-router-dom';
-
 import { LOGOUT_MUTATION, VIEWER_QUERY } from '../../apollo/queries';
 import { graphql, compose } from 'react-apollo';
 import Slide from '@material-ui/core/Slide';
@@ -143,7 +140,8 @@ class MenuAppBar extends Component {
 }
 
 MenuAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
 const refetchQueries = [

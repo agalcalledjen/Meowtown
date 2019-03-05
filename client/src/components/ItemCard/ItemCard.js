@@ -16,13 +16,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { ViewerContext } from '../../context/ViewerProvider';
 
 const ItemCard = ({ classes, item, history }) => {
-  const dateNow = Date.now();
-  // const minutes = 1000 * 60;
-  // const hours = minutes * 60;
-  // const days = hours * 24;
-
-  // const daysCounted = Math.round((dateNow - item.created) / days);
-
   return (
     <ViewerContext.Consumer>
       {({ viewer }) => (
@@ -59,9 +52,6 @@ const ItemCard = ({ classes, item, history }) => {
                       : item.itemowner.fullname}
                   </Typography>
                   <Typography variant="caption" gutterBottom>
-                    {/* {daysCounted > 1
-                      ? daysCounted + ' days ago'
-                      : daysCounted + ' day ago'} */}
                     {moment(item.created).fromNow()}
                   </Typography>
                 </Grid>
@@ -98,7 +88,17 @@ const ItemCard = ({ classes, item, history }) => {
 };
 
 ItemCard.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  item: PropTypes.shape({
+    borrower: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    imageurl: PropTypes.string.isRequired,
+    itemowner: PropTypes.objectOf(PropTypes.string.isRequired),
+    tags: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string.isRequired)),
+    title: PropTypes.string.isRequired
+  }),
+  history: PropTypes.object.isRequired
 };
 
 ItemCard.defaultProps = {
