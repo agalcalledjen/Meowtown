@@ -7,6 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import React, { Component, Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Form, Field } from 'react-final-form';
+import { FORM_ERROR } from 'final-form';
 import {
   LOGIN_MUTATION,
   SIGNUP_MUTATION,
@@ -24,7 +25,21 @@ class AccountForm extends Component {
     };
   }
 
-  onSubmit(values) {}
+  onSubmit = async values => {
+    console.log('VALUES', values);
+    const variables = { user: values };
+    try {
+      this.state.formToggle
+        ? await this.props.loginMutation({ variables })
+        : await this.props.signupMutation({ variables });
+    } catch (error) {
+      return {
+        [FORM_ERROR]: this.state.formToggle
+          ? 'Invalid email and/or password'
+          : 'User account with this email already exists.'
+      };
+    }
+  };
 
   render() {
     const { classes } = this.props;
@@ -42,7 +57,9 @@ class AccountForm extends Component {
             pristine,
             invalid,
             values,
-            form
+            form,
+            hasSubmitErrors,
+            submitError
           }) => (
             <form onSubmit={handleSubmit} className={classes.accountForm}>
               {!this.state.formToggle && (
@@ -172,7 +189,9 @@ class AccountForm extends Component {
                   </FormControl>
                 )}
               />
-              <Typography className={classes.errorMessage} />
+              {hasSubmitErrors && (
+                <Typography className={classes.error}>{submitError}</Typography>
+              )}
             </form>
           )}
         />

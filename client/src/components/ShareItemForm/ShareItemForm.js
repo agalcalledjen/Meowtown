@@ -57,7 +57,6 @@ class ShareItemForm extends Component {
     );
   }
 
-  // Convert the selected image into a base64 string so that we can store it our database.
   getBase64Url() {
     return new Promise(resolve => {
       const reader = new FileReader();

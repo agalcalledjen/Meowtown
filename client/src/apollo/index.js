@@ -24,7 +24,7 @@ const client = new ApolloClient({
     }),
     httpWithUploadsLink
   ]),
-  cache: new InMemoryCache() // Pull data from client-side cache, if available
+  cache: new InMemoryCache()
 });
 
 export default client;
