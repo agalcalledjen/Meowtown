@@ -42,7 +42,7 @@ const Profile = ({ classes, user }) => {
         </Grid>
       </Grid>
       {sharedItems ? (
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.shareWrapper}>
           <Typography
             component="h2"
             variant="display1"

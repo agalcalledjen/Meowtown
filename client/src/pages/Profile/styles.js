@@ -1,7 +1,8 @@
 const styles = theme => ({
   container: {
     paddingTop: theme.spacing.unit * 12,
-    background: theme.palette.secondary.main
+    background: theme.palette.secondary.main,
+    height: '100vh'
   },
   root: {
     padding: theme.spacing.unit * 12,
@@ -23,6 +24,7 @@ const styles = theme => ({
     width: 50,
     height: 50
   },
+  shareWrapper: { background: theme.palette.secondary.main },
   share: {
     marginLeft: theme.spacing.unit * 12
   }

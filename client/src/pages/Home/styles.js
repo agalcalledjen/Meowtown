@@ -10,11 +10,10 @@ const styles = theme => ({
   },
   heading: {
     padding: theme.spacing.unit * 5,
-
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing.unit * 20,
-      paddingRight: 0
-    }
+      padding: theme.spacing.unit * 20
+    },
+    background: theme.palette.primary.main
   },
 
   headline: {
@@ -31,11 +30,7 @@ const styles = theme => ({
   },
   account: {
     padding: theme.spacing.unit * 5,
-
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing.unit * 20,
-      paddingLeft: 0
-    }
+    background: theme.palette.primary.main
   }
 });
 
