@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Items from './Items';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
@@ -19,6 +20,10 @@ const ItemsContainer = ({ classes }) => {
       </Query>
     </div>
   );
+};
+
+ItemsContainer.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ItemsContainer);

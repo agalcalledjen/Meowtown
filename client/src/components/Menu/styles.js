@@ -12,7 +12,6 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20
   },
-
   shareButton: {
     margin: theme.spacing.unit,
     borderRadius: 50,

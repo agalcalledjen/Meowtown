@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Profile from './Profile';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
@@ -24,6 +25,10 @@ const ProfileContainer = ({ classes, match }) => {
       )}
     </ViewerContext.Consumer>
   );
+};
+
+ProfileContainer.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ProfileContainer);

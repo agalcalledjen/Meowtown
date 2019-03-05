@@ -1,13 +1,22 @@
 const styles = theme => ({
-  root: {
+  container: {
     flexGrow: 1,
     height: '100%',
-    background: theme.palette.primary.main,
+    background: theme.palette.primary.main
+    // padding: theme.spacing.unit * 5,
+    // [theme.breakpoints.up('md')]: {
+    //   padding: theme.spacing.unit * 20
+    // }
+  },
+  heading: {
     padding: theme.spacing.unit * 5,
+
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing.unit * 20
+      padding: theme.spacing.unit * 20,
+      paddingRight: 0
     }
   },
+
   headline: {
     fontWeight: 700,
     color: theme.palette.text.primary,
@@ -19,6 +28,14 @@ const styles = theme => ({
   subheading: {
     fontWeight: 400,
     color: 'white'
+  },
+  account: {
+    padding: theme.spacing.unit * 5,
+
+    [theme.breakpoints.up('md')]: {
+      padding: theme.spacing.unit * 20,
+      paddingLeft: 0
+    }
   }
 });
 
