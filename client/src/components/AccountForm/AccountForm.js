@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { Form, Field } from 'react-final-form';
 import { FORM_ERROR } from 'final-form';
@@ -26,7 +27,6 @@ class AccountForm extends Component {
   }
 
   onSubmit = async values => {
-    // must use variables const since graphql requires it
     const variables = { user: values };
 
     try {
@@ -200,6 +200,12 @@ class AccountForm extends Component {
     );
   }
 }
+
+AccountForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  loginMutation: PropTypes.func.isRequired,
+  signupMutation: PropTypes.func.isRequired
+};
 
 const refetchQueries = [
   {

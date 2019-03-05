@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import moment from 'moment';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
@@ -16,11 +17,11 @@ import { ViewerContext } from '../../context/ViewerProvider';
 
 const ItemCard = ({ classes, item, history }) => {
   const dateNow = Date.now();
-  const minutes = 1000 * 60;
-  const hours = minutes * 60;
-  const days = hours * 24;
+  // const minutes = 1000 * 60;
+  // const hours = minutes * 60;
+  // const days = hours * 24;
 
-  const daysCounted = Math.round((dateNow - item.created) / days);
+  // const daysCounted = Math.round((dateNow - item.created) / days);
 
   return (
     <ViewerContext.Consumer>
@@ -58,9 +59,10 @@ const ItemCard = ({ classes, item, history }) => {
                       : item.itemowner.fullname}
                   </Typography>
                   <Typography variant="caption" gutterBottom>
-                    {daysCounted > 1
+                    {/* {daysCounted > 1
                       ? daysCounted + ' days ago'
-                      : daysCounted + ' day ago'}
+                      : daysCounted + ' day ago'} */}
+                    {moment(item.created).fromNow()}
                   </Typography>
                 </Grid>
               </Grid>
