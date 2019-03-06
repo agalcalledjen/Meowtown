@@ -102,18 +102,20 @@ class ShareItemForm extends Component {
             return (
               <Form
                 onSubmit={async values => {
-                  addItemMutation({
-                    variables: {
-                      item: {
-                        ...values,
-                        tags: this.state.selectedTags.map(tag => ({
-                          id: tag,
-                          title: ''
-                        }))
+                  setTimeout(() => {
+                    addItemMutation({
+                      variables: {
+                        item: {
+                          ...values,
+                          tags: this.state.selectedTags.map(tag => ({
+                            id: tag,
+                            title: ''
+                          }))
+                        }
+                        // image: this.fileInput
                       }
-                      // image: this.fileInput
-                    }
-                  });
+                    });
+                  }, 6000);
                 }}
                 validate={values => {
                   return validate(
@@ -137,7 +139,7 @@ class ShareItemForm extends Component {
                         this.setState({ fileSelected: false });
                         resetItemImg();
 
-                        // Form.reset();
+                        form.reset();
                         resetItem();
                         this.setState({ selectedTags: [] });
                         return false;

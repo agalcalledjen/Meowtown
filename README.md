@@ -1,6 +1,6 @@
 # Meowtown 🏙
 
-ADP (Project 1): A back-end application that supports a local sharing economy using PostgreSQL, Node.js/Express, and GraphQL.
+ADP (Project 1): An web-based application for a local cat items sharing economy. The application offers the users features such as browse all items and user profiles. In addition, users can share items of their own.
 
 ---
 
@@ -12,7 +12,7 @@ ADP (Project 1): A back-end application that supports a local sharing economy us
 
 ### Server
 
-**NOTE: Please note that a database will be required to run the server.**
+**NOTE: Please note that a database such as Postgres will be required to run the server.**
 
 Commands must be run from the `server` directory:
 
@@ -46,21 +46,13 @@ npm install
 npm start
 ```
 
-#### Build
-
-```bash
-npm run build
-```
-
 ---
 
 ## Technologies Used
 
 - JavaScript
 - React
-  - JSX
   - Final Form
-  - Gravatar
 - Material UI
 - Redux
 - bcrypt

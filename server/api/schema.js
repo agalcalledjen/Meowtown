@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 module.exports = gql`
-  scalar Upload
   scalar Date
 
   enum Role {
@@ -70,7 +69,6 @@ module.exports = gql`
   }
 
   type Query {
-    # uploads: [File]
     user(id: ID!): User
     viewer: User
     items(filter: ID): [Item]

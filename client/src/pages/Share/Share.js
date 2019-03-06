@@ -14,7 +14,7 @@ const Share = ({ classes, tags }) => {
           <ShareItemPreview />
         </Hidden>
       </Grid>
-      <Grid item xs={12} sm={6} md={4} className={classes.control}>
+      <Grid item xs={12} sm={6} md={4}>
         <ShareItemForm tags={tags} />
       </Grid>
     </Grid>

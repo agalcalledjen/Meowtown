@@ -3,11 +3,10 @@ const { ApolloError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
 const authMutations = require('./auth');
 
-const { UploadScalar, DateScalar } = require('../custom-types');
+const { DateScalar } = require('../custom-types');
 
 module.exports = app => {
   return {
-    Upload: UploadScalar,
     Date: DateScalar,
 
     Query: {
@@ -104,14 +103,18 @@ module.exports = app => {
 
       async addItem(parent, args, { pgResource, token }, info) {
         // const image = await image;
-        const user = await jwt.decode(token, app.get('JWT_SECRET'));
+        try {
+          const user = await jwt.decode(token, app.get('JWT_SECRET'));
 
-        const newItem = await pgResource.saveNewItem({
-          item: args.item,
-          // image: args.image,
-          user
-        });
-        return newItem;
+          const newItem = await pgResource.saveNewItem({
+            item: args.item,
+            // image: args.image,
+            user
+          });
+          return newItem;
+        } catch (error) {
+          throw new Error(error);
+        }
       }
     }
   };

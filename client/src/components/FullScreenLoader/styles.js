@@ -1,6 +1,7 @@
 const styles = theme => ({
   container: {
-    height: '100vh'
+    height: '100vh',
+    background: theme.palette.secondary.main
   },
   wrapper: {
     margin: theme.spacing.unit,
