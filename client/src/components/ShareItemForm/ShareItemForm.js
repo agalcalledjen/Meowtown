@@ -1,16 +1,25 @@
 import React, { Component, Fragment } from 'react';
 import { Typography, TextField } from '@material-ui/core';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import {
+  withStyles,
+  Button,
+  Input,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  ListItemText,
+  Select,
+  Checkbox,
+  Slide,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
+} from '@material-ui/core';
 import styles from './styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import ListItemText from '@material-ui/core/ListItemText';
-import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
 import { Form, Field, FormSpy } from 'react-final-form';
 import {
   updateItem,
@@ -22,6 +31,10 @@ import { validate } from './helpers/validation';
 import { Mutation } from 'react-apollo';
 import { ADD_ITEM_MUTATION } from '../../apollo/queries';
 
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
 class ShareItemForm extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +43,8 @@ class ShareItemForm extends Component {
     this.state = {
       fileSelected: false,
       done: false,
-      selectedTags: []
+      selectedTags: [],
+      open: false // dialog
     };
   }
 
@@ -85,6 +99,21 @@ class ShareItemForm extends Component {
   handleSelectFile = () => {
     this.setState({ fileSelected: this.fileInput.current.files[0] });
   };
+
+  // --- start of dialog
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleRefresh = () => {
+    // this.setState({ open: false });
+    window.location.reload();
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+  // --- end dialog
 
   render() {
     const { classes, tags, updateItem, resetItem, resetItemImg } = this.props;
@@ -279,9 +308,43 @@ class ShareItemForm extends Component {
                       className={classes.shareButton}
                       disabled={submitting || pristine || invalid}
                       type="submit"
+                      onClick={this.handleClickOpen}
                     >
                       Share
                     </Button>
+
+                    {/* DIALOG */}
+                    <Dialog
+                      open={this.state.open}
+                      TransitionComponent={Transition}
+                      keepMounted
+                      onClose={this.handleClose}
+                      aria-labelledby="alert-dialog-slide-title"
+                      aria-describedby="alert-dialog-slide-description"
+                    >
+                      <DialogTitle id="alert-dialog-slide-title">
+                        {'Want to keep on sharing?'}
+                      </DialogTitle>
+                      <DialogContent>
+                        <DialogContentText id="alert-dialog-slide-description">
+                          Sharing items are fun.
+                        </DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={this.handleRefresh} color="primary">
+                          Yes
+                        </Button>
+                        <Button
+                          onClick={this.handleClose}
+                          color="primary"
+                          component={Link}
+                          to="/items"
+                        >
+                          No
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                    {/* DIALOG */}
                   </form>
                 )}
               />
@@ -317,4 +380,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps
-)(withStyles(styles)(ShareItemForm));
+)(withRouter(withStyles(styles)(ShareItemForm)));
