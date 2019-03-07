@@ -1,6 +1,6 @@
 # Meowtown 🏙
 
-ADP (Project 1): An web-based application for a local cat items sharing economy. The application offers the users features such as browse all items and user profiles. In addition, users can share items of their own.
+ADP (Project 1): A web-based application for a local cat items sharing economy. The application offers the users features such as browse all items and user profiles. In addition, users can share items of their own.
 
 ---
 
