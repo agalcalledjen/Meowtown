@@ -1,6 +1,6 @@
-# Meowtown 🏙
+# Meowtown 😸🌇
 
-ADP (Project 1): A web-based application for a local cat items sharing economy. The application offers the users features such as browse all items and user profiles. In addition, users can share items of their own.
+A web-based application for a local cat items sharing economy. The application offers the users features such as browse all items and user profiles. In addition, users can share items of their own.
 
 ---
 
@@ -70,6 +70,8 @@ npm start
 
 ## Personal Learnings
 
+### App Developer (Project 1)
+
 This is a project produced from the following lessons from Weeks 1 - 4:
 
 1. Intro to Databases with Postgres
@@ -97,4 +99,6 @@ Below are the subsequent learning outcomes:
 
 ## Author
 
-[Jennifer Lam](https://github.com/nejmal)
+[Jennifer Lam](https://github.com/nejmal), Full-Stack Developer student at [RED Academy](https://redacademy.com/vancouver/).
+
+Let's connect on [LinkedIn](https://www.linkedin.com/in/jenniferlam-/).
