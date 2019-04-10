@@ -1,6 +1,6 @@
 # Meowtown 😸🌇
 
-A web-based application for a local cat items sharing economy. The application offers the users features such as browse all items and user profiles. In addition, users can share items of their own.
+A sharing economy web-based application for a local cat items. The application offers the users features such as browse all items and user profiles. In addition, users can share items of their own.
 
 ---
 
